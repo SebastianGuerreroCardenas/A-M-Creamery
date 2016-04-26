@@ -1,5 +1,5 @@
-class ShiftsController < ApplicationController
-  before_action :set_shift, only: [:show,:edit, :update, :destroy]
+class FlavorsController < ApplicationController
+  before_action :set_flavor, only: [:show,:edit, :update, :destroy]
   before_action :check_login
 
   def index
@@ -12,7 +12,7 @@ class ShiftsController < ApplicationController
   end
 
   def new
-    @shift = Shift.new
+    @flavor = Flavor.new
     # if params[:from].nil?
     #   if params[:id].nil?
     #     @assignment = Assignment.new
@@ -37,25 +37,25 @@ class ShiftsController < ApplicationController
   end
 
   def update
-    if @shift.update(shift_params)
-      redirect_to shifts_path, notice: "#{@shift.employee.proper_name}'s shift to #{@shift.store.name} is updated."
+    if @flavor.update(flavor_params)
+      redirect_to flavors_path, notice: "#{@flavor.name}'s shift to #{@flavor.store.name} is updated."
     else
       render action: 'edit'
     end
   end
 
   def destroy
-    @shift.destroy
-    redirect_to shifts_path, notice: "Successfully removed #{@shift.employee.proper_name} from #{@shift.store.name}."
+    @flavor.destroy
+    redirect_to flavors_path, notice: "Successfully removed #{@flavor.name} from #{@flavor.store.name}."
   end
 
   private
-  def set_shift
-    @shift = Shift.find(params[:id])
+  def set_flavor
+    @flavor = Flavor.find(params[:id])
   end
 
-  def shift_params
-    params.require(:shift).permit(:assignment_id, :date, :start_time, :end_time, :notes)
+  def flavor_params
+    params.require(:flavor).permit(:name, :active)
   end
 
 end
