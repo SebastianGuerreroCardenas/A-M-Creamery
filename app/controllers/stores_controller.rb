@@ -1,6 +1,8 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
+  before_action :check_login, except: [:index, :show]
   
+
   def index
     @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
     @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)  
