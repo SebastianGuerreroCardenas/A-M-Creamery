@@ -19,61 +19,31 @@ class Ability
 
       # they can read only employees who are in their store
       can :read, Employee do |this_employee| 
+         #checks that the current manger has an assignment
          unless user.employee.current_assignment.nil? do
             my_store_id = user.employee.current_assignment.store.id
-            if not employee.current_assignment.current_assignment.nil?
-                my_store_id == employee.current_assignment.store.id
+            #checks that the employee has an assingment
+            if not this_employee.current_assignment.current_assignment.nil?
+                my_store_id == this_employee.current_assignment.store.id
             end
          end
       end
 
-      # can see a list of all users
-      can :index, User
-      
-      # they can read their own profile
-      can :show, User do |u|  
-        u.id == user.id
-      end
-      # they can update their own profile
-      can :update, User do |u|  
-        u.id == user.id
+      # they can read only employees who are in their store
+      can :manage, Shift do |this_shift| 
+         #checks that the current manger has an assignment
+         unless user.employee.current_assignment.nil? do
+            my_store_id = user.employee.current_assignment.store.id
+            my_store_id == this_shift.store.id
+         end
       end
       
-      # they can read their own projects' data
-      can :read, Project do |this_project|  
-        my_projects = user.projects.map(&:id)
-        my_projects.include? this_project.id 
-      end
-      # they can create new projects for themselves
-      can :create, Project
-      
-      # they can update the project only if they are the manager (creator)
-      can :update, Project do |this_project|
-        managed_projects = user.projects.map{|p| p.id if p.manager_id == user.id}
-        managed_projects.include? this_project.id
-      end
-            
-      # they can read tasks in these projects
-      can :read, Task do |this_task|  
-        project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-        project_tasks.include? this_task.id 
-      end
-      
-      # they can update tasks in these projects
-      can :update, Task do |this_task|  
-        project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-        project_tasks.include? this_task.id 
-      end
-      
-      # they can create new tasks for these projects
-      can :create, Task do |this_task|  
-        my_projects = user.projects.map(&:id)
-        my_projects.include? this_task.project_id  
-      end
 
     elsif user.role? :employee
-      # can see a list of all users
-      can :index, User
+      #can read store, job and flavor
+      can :read, Store
+      can :read, Job
+      can :read, Flavor
       
       # they can read their own profile
       can :show, User do |u|  
@@ -83,42 +53,22 @@ class Ability
       can :update, User do |u|  
         u.id == user.id
       end
-      
-      # they can read their own projects' data
-      can :read, Project do |this_project|  
-        my_projects = user.projects.map(&:id)
-        my_projects.include? this_project.id 
+
+      # they can read their own assignments
+      can :read, Assignment do |a|  
+        a.employee_id == user.id
       end
-      # they can create new projects for themselves
-      can :create, Project
-      
-      # they can update the project only if they are the manager (creator)
-      can :update, Project do |this_project|
-        managed_projects = user.projects.map{|p| p.id if p.manager_id == user.id}
-        managed_projects.include? this_project.id
-      end
-            
-      # they can read tasks in these projects
-      can :read, Task do |this_task|  
-        project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-        project_tasks.include? this_task.id 
-      end
-      
-      # they can update tasks in these projects
-      can :update, Task do |this_task|  
-        project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-        project_tasks.include? this_task.id 
-      end
-      
-      # they can create new tasks for these projects
-      can :create, Task do |this_task|  
-        my_projects = user.projects.map(&:id)
-        my_projects.include? this_task.project_id  
+
+      # they can read their own assignments
+      can :read, Shift do |s|  
+        s.employee.id == user.id
       end
 
     else
-      # guests can only read domains covered (plus home pages)
-      can :read, Domain
+      # guests can only read active stores
+      can :read, Store do |s|  
+        s.active == true
+      end
     end
 
 #MANAGERS:
