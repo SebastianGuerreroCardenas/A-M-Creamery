@@ -11,11 +11,10 @@
  * file per style scope.
  *
  *= require_self
- *= require foundation.min
  *= require normalize
  *= require font-awesome.min
- *= require foundation_and_overrides
  *= require simple_form
+ *= require semantic_ui/semantic_ui
  */
 
  .tl_name {

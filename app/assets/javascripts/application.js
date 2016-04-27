@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation.min
+//= require semantic_ui/semantic_ui
 //= require_tree .
 
-$(function() {
-  $(document).foundation('topbar', 'reflow');
-});
+
