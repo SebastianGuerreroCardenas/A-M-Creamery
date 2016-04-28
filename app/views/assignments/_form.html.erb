@@ -1,20 +1,39 @@
-<%= simple_form_for @assignment, html: { class: 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Assignment</legend>
-
-    <%= f.input :store_id, :collection => Store.active.alphabetical, :include_blank => true, input_html: {class: "avg"} %>
-    <%= f.input :employee_id, :collection => Employee.active.alphabetical, :include_blank => true, input_html: {class: "avg"} %>
-    <%= f.input :start_date, :label => "Start Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
-    <%# Only show the end_date on 'edit', not 'new' %>
-    <% if controller.action_name == "edit" %>
-      <%= f.input :end_date, :label => "End Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
-    <% end %>
-    
-    <%= f.input :pay_level, :collection => 1..6, :include_blank => true, input_html: {class: "avg"} %>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
+<%= form_for @assignment do |f| %>
+<% if @assignment.errors.any? %>
+<div id="error_explanation" class="ui red message">
+    <i class="close icon"></i>
+    <div class="header">
+        <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this Assignment from being saved:</h2>
     </div>
-  </fieldset>
+    <ul class="list">
+        <% @assignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
 <% end %>
+<div class="fields">
+    <div class="required five wide field">
+        <%= f.label :store_id %>
+        <%= f.select :store_id, get_store_options, prompt: "Select ..." %>
+    </div>
+    <div class="required five wide field">
+        <%= f.label :employee_id %>
+        <%= f.select :employee_id, get_employee_options, prompt: "Select ..." %>
+    </div>
+</div>
+<div class="required field">
+    <%= f.label :start_date %>
+    <div class="fields">
+        <%= f.date_select :start_date, order: [:month, :day, :year], start_year: 20.year.ago.year, end_year: Date.today.year %>
+    </div>
+</div>
+<div class="fields">
+    <div class="required field">
+        <%= f.label :pay_level %>
+        <%= f.select :pay_level, [1,2,3,4,5,6] %>
+    </div>
+</div>
+<p><%= f.submit class: 'ui blue basic button' %></p>
+<% end %>
+</br>

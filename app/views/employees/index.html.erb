@@ -1,4 +1,28 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "employee", 
-                                                         primary: "current_employees", 
-                                                         secondary: nil,
-                                                         sidebar: "inactive_employees"} %>
+<div class="ui grid">
+<div class="two column row">
+	<div class="column">
+	<h1>Active Employees</h1>
+
+	<%= render 'active_employees_table' %>
+
+
+	<%= link_to "<button class='ui basic green button'>
+	  <i class='icon user'></i>
+	  Add A Employee
+	</button>".html_safe, new_employee_path %>
+	</div>
+
+
+	<div class="column">
+		
+			<h1>Inactive Employees</h1>
+
+
+
+			<%= render 'inactive_employees_table' %>
+		
+	</div>
+
+</div>
+</div>
+<br/>

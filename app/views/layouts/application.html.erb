@@ -1,32 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class"gr__semantic-ui_com">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>A &amp; M Creamery</title>
+    <title>GOES HERE...</title>
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <div id="title_area">
-      <%= link_to image_tag('creamery_title.png'), home_path %>
+  <body data-gr-c-s-loaded="true">
+    <!-- show the header partial -->
+    <div id="wrapper">
+    <div id="header">
+    <%= render :partial => "partials/header" %>
     </div>
-    <%= render :partial => "partials/nav" %>
-    
-    <div class="row">
-      <div class="small-12 columns" id="main_content">
-        <%= render :partial => "partials/flash" %>
-        <%= yield %>
+    <div id="content">
+    <%= puts flash.to_a %>
+
+
+    <div class="ui main container">
+      <% if not flash.to_a.empty? %>
+      <div id="error_explanation" class="ui red message">
+        <i class="close icon"></i>
+        <div class="header">
+          <h2>Notifications</h2>
+        </div>
+        <ul class="list">
+        <% flash.each do |name, msg| %>
+        <li id=<%="flash_#{name}"%>><%= msg %></li>
+        <% end %>
+        </ul>
       </div>
+    <% end %>
+       <%= yield %>
     </div>
-    <footer>
-      <div class="small-12 columns" id="footer">
-        <%= render partial: 'partials/footer' %>
-      </div>
-    </footer> 
     <%= javascript_include_tag "application" %>
+    </div>
+    <!-- show the footer partial -->
+    <%= render :partial => "partials/footer" %>
+
+    </div>
   </body>
 </html>

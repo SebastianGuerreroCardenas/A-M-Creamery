@@ -1,0 +1,19 @@
+<div class="ui container">
+<div class="ui fixed inverted center aligned segment menu">
+<div class="ui container">
+  <div class="ui large secondary inverted pointing menu">
+      
+  	<div class="item">
+     <%= image_tag 'logo.png', class: 'ui fluid image small' %>
+     </div>
+
+      <%= link_to 'Home', home_path, class: (params[:controller] == 'home' ? "item active" : "item" ) %>
+      <%= link_to 'Stores', stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
+      <%= link_to 'Employees', employees_path, class:(params[:controller] == 'employees' ? "item active" : "item" )%>
+      <%= link_to 'Assignments', assignments_path, class:(params[:controller] == 'assignments' ? "item active" : "item" ) %>
+
+     
+  </div>
+</div>
+</div>
+</div>

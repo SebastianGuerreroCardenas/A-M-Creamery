@@ -1,11 +1,62 @@
-<div class="row">
-  <div class="small-7 columns">
-    <%= render partial: "employee_details" %>
-  </div>
-  <div class="small-5 columns">
-    <%= render partial: "assignment_history" unless @assignments.empty?%>
-  </div>
-</div>
+<div class="ui grid">
+	<div class="eight wide column">	
+		<h1>Employee Details</h1>
 
-<!-- Add buttons to list all, edit project or destroy object -->
-<%= render partial: "partials/object_options", locals: {model_name: "employee", object: @employee}  %>
+		<b>Name:</b> <%= @employee.name %>
+		<br/>
+		<br/>
+		<b>Phone:</b> <%= number_to_phone @employee.phone %>
+		<br/>
+		<br/>
+		<b>Date of Birth:</b> <%= @employee.date_of_birth.strftime("%m/%d/%y") %>
+		<br/>
+		<br/>
+		<b>SSN:</b> <%= @employee.ssn %>
+		<br/>
+		<br/>
+		<b>Role:</b> <%= @employee.role.titleize %>
+		<br/>
+		<br/>
+		<b>Active: </b> 
+
+		<% if @employee.active? %>
+		 Yes
+		<% else %>
+		 No
+		<% end %>
+		<br/>
+		<br/>
+		<%= link_to "<button class='ui basic green button'>
+	  <i class='icon edit'></i>
+	  Edit Employee
+	</button>".html_safe, edit_employee_path(@employee)  %>
+	</div>
+	<br/>
+	<div class="six wide column">
+		<h1>Assignment History</h1>
+		<br/>
+		<table class="ui very basic collapsing celled table">
+			<thead>
+				<th>Stores</th>
+			</thead>
+			<tbody>
+			<% for assignment in @assignments%>
+			<tr>
+				<td>
+					<%= link_to assignment.store.name, store_path(assignment.store) %>
+				</td>
+			</tr>
+			<% end %>
+			</tbody>
+			<tfoot>
+
+			<tr><th colspan="6">
+			<div class="ui right aligned">
+			<%= will_paginate @assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
+			</div>
+			</th>
+			</tr>
+			</tfoot>
+		</table><br/><br/>
+	</div>
+</div>

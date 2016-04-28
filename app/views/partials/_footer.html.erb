@@ -1,15 +1,20 @@
+ <!-- Footer partial that will appear in all pages -->
 
-<footer>
-
-	<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-  <%= link_to 'About the Creamery', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Privacy Policy', privacy_path %>
-	<br /><br />
-	
-	<div id="copy">
-		Webmaster: <%= mail_to("YOUR EMAIL HERE", "YOUR NAME HERE", encode: "javascript") %> 
-		&nbsp;&nbsp;&copy 2016
-	</div>
-
-</footer>
+ <footer>
+ 	<div  id="footer" class="ui inverted vertical footer segment">
+ 		<div class="ui center aligned container">
+ 			<div class="ui horizontal inverted small divided link list">
+		 		<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+			  	<%= link_to 'About A&M Cremary', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+				<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+				<%= link_to 'Privacy Policy', privacy_path %>
+				<br/>
+				<br/>
+				<div>
+					Webmaster: <%= mail_to("sguerrer@andrew.cmu.edu", "Sebastian Guerrero", encode: "javascript") %> 
+				&nbsp;&nbsp;&copy 2016
+				</div>
+			</div>
+		</div>
+ 	</div>
+ </footer>

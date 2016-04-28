@@ -1,0 +1,48 @@
+<%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
+<% if not @current_assignments.empty? %>
+	<table class="ui very basic collapsing celled table">
+		<thead>
+			<th>Store</th>
+			<th>Employee</th>
+			<th>Pay</th>
+			<th>Start Date</th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+		<% for assignment in @current_assignments %>
+		<tr>
+			<td>
+				<%= link_to assignment.store.name, store_path(assignment.store) %>
+			</td>
+			<td>
+				<%= link_to assignment.employee.name, employee_path(assignment.employee) %>
+			</td>
+			<td>
+				<%= assignment.pay_level %>
+			</td>
+			<td>
+				<%= assignment.start_date.strftime("%m/%d/%y") %>
+			</td>
+			<td>
+				<%= link_to 'Edit', edit_assignment_path(assignment) %>
+			</td>
+			<td>
+				<%= link_to 'Destroy', assignment, confirm: 'Are you sure?', method: :delete %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+		<tfoot>
+
+		<tr><th colspan="6">
+		<div class="ui right aligned">
+		<%= will_paginate @current_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'current_page', class: 'itemtags' %>
+		</div>
+		</th>
+		</tr>
+		</tfoot>
+	</table>
+<% else %>
+<p>There are no current assignments. They should show the value of Store, Employee, Pay, and Start Date.</p>
+<% end %>

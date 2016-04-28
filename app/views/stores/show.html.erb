@@ -1,11 +1,60 @@
-<div class="row">
-  <div class="small-7 columns">
-    <%= render partial: "store_details" %>
-  </div>
-  <div class="small-5 columns">
-    <%= render partial: "assigned_employees" unless @current_assignments.empty?%>
-  </div>
-</div>
+<div class="ui grid">
+	<div class="eight wide column">
+		<h1>Store Details</h1>
+		g
+		<b>Name:</b> <%= @store.name %>
+		<br/>
+		<br/>
+		<b>Address:&nbsp;&nbsp;</b>
+		<br/>
+		  <%= @store.street %><br/>
+		  <%= @store.city %>, <%= @store.state %> <%= @store.zip %><br/><br/>
 
-<!-- Add buttons to list all, edit project or destroy object -->
-<%= render partial: "partials/object_options", locals: {model_name: "store", object: @store}  %>
+		<b>Active: </b> 
+
+		<% if @store.active? %>
+		 Yes
+		<% else %>
+		 No
+		<% end %>
+		<br/>
+		<br/>
+		<%= link_to "<button class='ui basic green button'>
+	  <i class='icon edit'></i>
+	  Edit Store
+	</button>".html_safe, edit_store_path(@store)  %>
+	</div>
+	<br/>
+	<div class="six wide column">
+		<h1>Current Employees</h1>
+		<br/>
+		<table class="ui very basic collapsing celled table">
+			<thead>
+				<th>Name</th>
+				<th>Role</th>
+			</thead>
+			<tbody>
+			<% for assignment in @current_assignments%>
+			<tr>
+				<td>
+					<%= link_to assignment.employee.name, employee_path(assignment.employee) %>
+				</td>
+				<td>
+					<%= assignment.employee.role%>
+				</td>
+			</tr>
+			<% end %>
+			</tbody>
+			<tfoot>
+
+			<tr><th colspan="6">
+			<div class="ui right aligned">
+			<%= will_paginate @current_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
+			</div>
+			</th>
+			</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+<br/><br/>

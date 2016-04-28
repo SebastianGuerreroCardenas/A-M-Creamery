@@ -1,18 +1,51 @@
-<%= simple_form_for @store, html: { class: 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Store</legend>
-
-    <%= f.input :name, input_html: {class: "avg"} %>
-    <%= f.input :street, input_html: {class: "avg"} %>
-    <%= f.input :city, input_html: {class: "avg"} %>
-    <%= f.input :state, collection: Store::STATES_LIST, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :zip, input_html: {class: "avg"} %>
-    <%= f.input :phone, input_html: {class: "avg"} %>
-    <%= f.input :active %>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', stores_path, :class => 'button alert radius' %>
-    </div>
-  </fieldset>
-<% end %>
+<%= form_for @store do |f| %>
+  <% if @store.errors.any? %>
+      <div id="error_explanation" class="ui red message">
+          <i class="close icon"></i>
+          <div class="header">
+              <h2><%= pluralize(@store.errors.count, "error") %> prohibited this Store from being saved:</h2>
+          </div>
+          <ul class="list">
+              <% @store.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+          </ul>
+      </div>
+  <% end %>
+  <div class="fields">
+      <div class="required field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+      </div>
+  </div>
+  <h4 class="ui dividing header">Address</h4>
+  <div class="required field">
+      <%= f.label :street %>
+      <%= f.text_field :street %>
+  </div>
+  <div class="fields">
+      <div class="seven wide field">
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+      </div>
+      <div class="five wide field">
+          <%= f.label :state %>
+          <%= f.select(:state, Store::STATES_LIST) %>
+      </div>
+      <div class="required five wide field">
+          <%= f.label :zip %>
+          <%= f.text_field :zip %>
+      </div>
+  </div>
+  <h4 class="ui dividing header">Contact</h4>
+  <div class="fields">
+      <div class="required field">
+          <%= f.label :phone %>
+          <%= f.text_field :phone %>
+      </div>
+  </div>
+  <div>
+      <p><%= f.submit class: 'ui basic blue button' %></p>
+  </div>
+  <% end %>
+<br/>

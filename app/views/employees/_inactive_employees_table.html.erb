@@ -1,0 +1,44 @@
+<%#checks if there are any elements in the employee, if so returns a table, else returns a statement %>
+<% if not @inactive_employees.empty? %>
+	<table class="ui very basic collapsing celled table">
+		<thead>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Role</th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+		<% for employee in @inactive_employees %>
+		<tr>
+			<td>
+				<%= link_to employee.name, employee_path(employee)%>
+			</td>
+			<td>
+				<%= number_to_phone employee.phone %>
+			</td>
+			<td>
+				<%= employee.role.titleize %>
+			</td>
+			<td>
+				<%= link_to 'Edit', edit_employee_path(employee) %>
+			</td>
+			<td>
+				<%= link_to 'Destroy', employee, confirm: 'Are you sure?', method: :delete %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+		<tfoot>
+
+		<tr><th colspan="6">
+		<div class="ui right aligned">
+		<%= will_paginate @inactive_employees, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'inactive_page', class: 'itemtags' %>
+		</div>
+		</th>
+		</tr>
+		</tfoot>
+	</table>
+<% else %>
+<p>There are no current inactive employees. They should show the value of Name, Phone, and their Role.</p>
+<% end %>

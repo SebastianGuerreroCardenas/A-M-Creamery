@@ -1,4 +1,21 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "store", 
-                                                         primary: "active_stores", 
-                                                         secondary: nil,
-                                                         sidebar: "inactive_stores"} %>
+
+<div class="ui grid">
+<div class="two column row">
+	<div class="column">
+	<h1>Current Stores</h1>
+
+	<%= render 'active_stores_table' %>
+
+	<%= link_to "<button class='ui basic green button'>
+	  <i class='icon food'></i>
+	  Add A Store
+	</button>".html_safe, new_store_path  %>
+	</div>
+	<div class="column">
+	<h1>Inactive Stores</h1>
+
+	<%= render 'inactive_stores_table' %>
+	</div>
+</div>
+</div>
+

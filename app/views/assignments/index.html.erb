@@ -1,4 +1,27 @@
-<%= render partial: "partials/index_structure_2", locals: {model_name: "assignment", 
-                                                         primary: "current_assignments", 
-                                                         secondary: "past_assignments",
-                                                         sidebar: nil} %>
+<div class="ui grid">
+<div class="two column row">
+    <div class="column">
+
+
+	<h1>Current Assignments</h1>
+
+	<%= render 'current_assignments_table' %>
+
+	<%= link_to "<button class='ui green basic button'>
+	  <i class='icon suitcase'></i>
+	  Create an Assignment
+	</button>".html_safe, new_assignment_path %>
+
+	</div>
+	
+
+	<div class="column">
+
+	<h1>Past Assignments</h1>
+
+
+	<%= render 'past_assignments_table' %>
+
+	</div>
+</div>
+</div>
