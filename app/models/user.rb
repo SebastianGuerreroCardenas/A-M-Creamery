@@ -16,15 +16,15 @@ class User < ActiveRecord::Base
   
 
   # for use in authorizing with CanCan
-  ROLES = [['Administrator', :admin],['Manager', :manager],['Employee', :employee],['Guest', :guest]]
+  # ROLES = [['Administrator', :admin],['Manager', :manager],['Employee', :employee],['Guest', :guest]]
 
   def self.authenticate(email,password)
     find_by_email(email).try(:authenticate, password)
   end
 
   def role?(authorized_role)
-    return false if self.employee.role.nil?
-    self.employee.role.to_sym == authorized_role
+    return false if employee.nil?
+    self.employee.role.downcase.to_sym == authorized_role
   end
 
   private
