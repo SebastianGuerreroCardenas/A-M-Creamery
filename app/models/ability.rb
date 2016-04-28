@@ -10,17 +10,15 @@ class Ability
     if user.role? :admin
       # they get to do it all
       can :manage, :all
-      
     elsif user.role? :manager
       #can read store, job and flavor
       can :read, Store
       can :read, Job
       can :read, Flavor
-
-      # they can read only employees who are in their store
+      # # they can read only employees who are in their store
       can :read, Employee do |this_employee| 
          #checks that the current manger has an assignment
-         unless user.employee.current_assignment.nil? do
+         unless user.employee.current_assignment.nil?
             my_store_id = user.employee.current_assignment.store.id
             #checks that the employee has an assingment
             if not this_employee.current_assignment.current_assignment.nil?
@@ -28,17 +26,14 @@ class Ability
             end
          end
       end
-
-      # they can read only employees who are in their store
+      # # they can read only employees who are in their store
       can :manage, Shift do |this_shift| 
          #checks that the current manger has an assignment
-         unless user.employee.current_assignment.nil? do
+         unless user.employee.current_assignment.nil? 
             my_store_id = user.employee.current_assignment.store.id
             my_store_id == this_shift.store.id
          end
       end
-      
-
     elsif user.role? :employee
       #can read store, job and flavor
       can :read, Store
@@ -70,22 +65,5 @@ class Ability
         s.active == true
       end
     end
-
-#MANAGERS:
-#can read any information on stores, jobs, flavors.
-#can read employee and assignment information for employees who are currently assigned to the same store the manager is currently assigned to.
-#can read shift information for employees who are currently assigned to the same store the manager is currently assigned to.
-#can create new shifts for (1) the same store the manager is currently assigned to and for (2) employees currently assigned to same store.
-#can update or destroy shifts that are associated with the same store as the manager's currently assigned store.
-#can create and destroy shift-jobs for shifts that are associated with the same store as the manager's currently assigned store.
-#can create and destroy store-flavors for the same store the manager is currently assigned to.
-
-#Employees
-# read any information on stores, as well as jobs and flavors (stores required, but jobs and flavors are optional).
-# can read employee, user, assignment and shift and shift-job information that belongs to them directly.
-# can update their own employee and user data, with the exception of SSN (this latter requirement not to be handled in the ability.rb file).
-
-
-
   end
 end
