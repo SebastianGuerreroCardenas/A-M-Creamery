@@ -1,0 +1,13 @@
+<% if not flash.to_a.empty? %>
+  <div id="error_explanation" class="ui red message">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2>Notifications</h2>
+  </div>
+  <ul class="list">
+    <% flash.each do |name, msg| %>
+      <li id=<%="flash_#{name}"%>><%= msg %></li>
+    <% end %>
+  </ul>
+  </div>
+<% end %>

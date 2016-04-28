@@ -4,36 +4,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>GOES HERE...</title>
+    <title>A&M Creamery</title>
     <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body data-gr-c-s-loaded="true">
+  <body data-gr-c-s-loaded="true" class="body">
     <!-- show the header partial -->
     <div id="wrapper">
+
     <div id="header">
     <%= render :partial => "partials/header" %>
     </div>
     <div id="content">
-    <%= puts flash.to_a %>
-
 
     <div class="ui main container">
-      <% if not flash.to_a.empty? %>
-      <div id="error_explanation" class="ui red message">
-        <i class="close icon"></i>
-        <div class="header">
-          <h2>Notifications</h2>
-        </div>
-        <ul class="list">
-        <% flash.each do |name, msg| %>
-        <li id=<%="flash_#{name}"%>><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-       <%= yield %>
+    <%= render :partial => "partials/flash" %>
+
+
+
+    <%= yield %>
+
+
+
     </div>
     <%= javascript_include_tag "application" %>
     </div>

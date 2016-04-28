@@ -15,6 +15,7 @@
 //= require semantic_ui/semantic_ui
 //= require_tree .
 
+// adds the item class to all a tags, that have itemtags
 $('div.itemtags a').addClass('item');
 
 
