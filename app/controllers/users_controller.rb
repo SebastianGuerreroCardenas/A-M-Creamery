@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = "This user could not be created."
       render "new"
+    end
   end
 
   def update

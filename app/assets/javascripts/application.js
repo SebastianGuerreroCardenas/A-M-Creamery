@@ -56,6 +56,12 @@ $('.message .close')
 ;
 
 
+$('.ui.dropdown')
+  .dropdown({
+    on: 'hover'
+  })
+;
+
 //enables the side par for personal view
 // $('.ui.labeled.icon.sidebar')
 //   .sidebar('toggle')

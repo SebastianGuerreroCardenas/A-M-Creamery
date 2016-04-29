@@ -14,23 +14,21 @@
     <!-- show the header partial -->
     <div id="wrapper">
 
-    <div id="header">
+    <!-- <div id="header"> -->
       <% if logged_in? %>
           <%= render :partial => 'partials/personal_header' %>
       <% else %>
+          <div id="header">
           <%= render :partial => 'partials/header' %>
+          </div>
       <% end %>
-    </div>
-    <div id="content">
+    <!-- </div> -->
+    <div id="content" class="pusher">
 
     <div class="ui main container">
     <%= render :partial => "partials/flash" %>
 
-
-
     <%= yield %>
-
-
 
     </div>
     <%= javascript_include_tag "application" %>
