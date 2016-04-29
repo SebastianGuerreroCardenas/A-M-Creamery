@@ -15,7 +15,11 @@
     <div id="wrapper">
 
     <div id="header">
-    <%= render :partial => "partials/header" %>
+      <% if logged_in? %>
+          <%= render :partial => 'partials/personal_header' %>
+      <% else %>
+          <%= render :partial => 'partials/header' %>
+      <% end %>
     </div>
     <div id="content">
 
