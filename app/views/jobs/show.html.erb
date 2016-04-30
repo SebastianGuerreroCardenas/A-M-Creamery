@@ -1,0 +1,28 @@
+<div class="ui grid">
+	<div class="eight wide column">
+		<h1>Job Details</h1>
+		<b>Name:</b> <%= @job.name %>
+		<br/>
+		<br/>
+		<b>Description:&nbsp;&nbsp;</b>
+		<br/>
+		  <%= @job.description %><br/>
+		  <br/><br/>
+
+		<b>Active: </b> 
+
+		<% if @job.active? %>
+		 Yes
+		<% else %>
+		 No
+		<% end %>
+		<br/>
+		<br/>
+		<%= link_to "<button class='ui basic green button'>
+	  <i class='icon edit'></i>
+	  Edit Job
+	</button>".html_safe, edit_job_path(@job)  %>
+	</div>
+	<br/>
+</div>
+<br/><br/>

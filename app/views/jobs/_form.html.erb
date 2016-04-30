@@ -1,0 +1,31 @@
+<%= form_for @job do |f| %>
+  <% if @job.errors.any? %>
+      <div id="error_explanation" class="ui red message">
+          <i class="close icon"></i>
+          <div class="header">
+              <h2><%= pluralize(@job.errors.count, "error") %> prohibited this Job from being saved:</h2>
+          </div>
+          <ul class="list">
+              <% @job.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+          </ul>
+      </div>
+  <% end %>
+  <div class="fields">
+      <div class="required field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+      </div>
+  </div>
+  <div class="fields">
+      <div class="required field">
+          <%= f.label :description %>
+          <%= f.text_field :description %>
+      </div>
+  </div>
+  <div>
+      <p><%= f.submit class: 'ui basic blue button' %></p>
+  </div>
+  <% end %>
+<br/>

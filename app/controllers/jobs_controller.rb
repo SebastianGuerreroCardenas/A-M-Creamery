@@ -9,33 +9,24 @@ class JobsController < ApplicationController
   end
 
   def show
-    # get the shift history for this assignment (later; empty now)
-    # @shifts = Array.new
+    
   end
 
   def new
     @job = Job.new
-    # if params[:from].nil?
-    #   if params[:id].nil?
-    #     @assignment = Assignment.new
-    #   else
-    #     @assignment = Assignment.find(params[:id])
-    #   end
-    # else
-    #   @assignment = Assignment.new
-    #   if params[:from] == "store" 
-    #     @assignment.store_id = params[:id]
-    #   else
-    #     @assignment.employee_id = params[:id]
-    #   end
-    # end
   end
 
   def edit
   end
 
   def create
+    @job = Job.new(job_params)
     
+    if @job.save
+      redirect_to job_path(@job), notice: "Successfully created #{@job.name}."
+    else
+      render action: 'new'
+    end
   end
 
   def update
@@ -52,11 +43,11 @@ class JobsController < ApplicationController
   end
 
   private
-  def set_flavor
+  def set_job
     @job = Job.find(params[:id])
   end
 
-  def flavor_params
+  def job_params
     params.require(:job).permit(:name, :description, :active)
   end
 
