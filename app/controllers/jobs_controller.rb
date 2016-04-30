@@ -4,7 +4,8 @@ class JobsController < ApplicationController
   authorize_resource
 
   def index
-    
+    @active_jobs = Job.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    @inactive_jobs = Job.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 
   def show

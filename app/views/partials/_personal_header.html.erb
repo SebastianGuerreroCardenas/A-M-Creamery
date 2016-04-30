@@ -1,10 +1,8 @@
-
 <div class="ui inverted top fixed menu">
   <div class="ui right dropdown item">
     <%= logged_in?.employee.name %>
     <i class="dropdown icon"></i>
     <div class="menu">
-      <div class="item">Personal Settings</div>
       <%= link_to 'Edit Settings', edit_user_path(logged_in?), class: "item" %>
       <%= link_to "Logout", logout_path, class: "item" %>
     </div>
@@ -24,11 +22,13 @@
     <i class="smile icon"></i>
     Friends
   </a>
-   <%= link_to 'Home', home_path, class: (params[:controller] == 'home' ? "item active" : "item" ) %>
+   <%= link_to 'Dashboard', dashboard_path, class: (params[:controller] == 'dashboard' ? "item active" : "item" ) %>
    <%= link_to 'Stores', stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
+   <%= link_to 'Flavors', flavors_path, class:(params[:controller] == 'flavors' ? "item active" : "item" ) %>
    <%= link_to 'Employees', employees_path, class:(params[:controller] == 'employees' ? "item active" : "item" )%>
    <%= link_to 'Assignments', assignments_path, class:(params[:controller] == 'assignments' ? "item active" : "item" ) %>
    <%= link_to 'Shifts', shifts_path, class:(params[:controller] == 'shifts' ? "item active" : "item" ) %>
+   <%= link_to 'Jobs', jobs_path, class:(params[:controller] == 'jobs' ? "item active" : "item" ) %>
 
 </div>
 

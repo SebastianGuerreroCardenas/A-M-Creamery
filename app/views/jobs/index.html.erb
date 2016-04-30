@@ -6,14 +6,14 @@
 	<div class="ui grid">
 	<div class="two column row">
 		<div class="column">
-			<h1>Current Stores</h1>
+			<h1>Current Jobs</h1>
 
-				<%= render 'active_stores_table' %>
+				<%= render 'active_jobs_table' %>
 
 				<%= link_to "<button class='ui basic green button'>
 	 						 <i class='icon food'></i>
-							  Add A Store
-							</button>".html_safe, new_store_path  %>
+							  Add A Job
+							</button>".html_safe, new_job_path  %>
 		</div>
 	</div>
 	</div>
@@ -23,13 +23,11 @@
 <div class="ui grid">
 <div class="two column row">
 	<div class="column">
-	<h1>Inactive Stores</h1>
+	<h1>Inactive Jobs</h1>
 
-	<%= render 'inactive_stores_table' %>
+	<%= render 'inactive_jobs_table' %>
 	</div>
 </div>
 </div>
-
-
 </div>
 

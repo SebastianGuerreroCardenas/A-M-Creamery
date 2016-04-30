@@ -62,6 +62,10 @@ $('.ui.dropdown')
   })
 ;
 
+
+$('.menu .item')
+  .tab()
+;
 //enables the side par for personal view
 // $('.ui.labeled.icon.sidebar')
 //   .sidebar('toggle')
