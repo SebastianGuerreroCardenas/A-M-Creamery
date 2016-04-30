@@ -1,0 +1,24 @@
+<div class="ui grid">
+	<div class="eight wide column">
+		<h1>Flavor Details</h1>
+		<b>Name:</b> <%= @flavor.name %>
+		<br/>
+		<br/>
+
+		<b>Active: </b> 
+
+		<% if @job.active? %>
+		 Yes
+		<% else %>
+		 No
+		<% end %>
+		<br/>
+		<br/>
+		<%= link_to "<button class='ui basic green button'>
+	  <i class='icon edit'></i>
+	  Edit Flavor
+	</button>".html_safe, edit_flavor_path(@flavor)  %>
+	</div>
+	<br/>
+</div>
+<br/><br/>

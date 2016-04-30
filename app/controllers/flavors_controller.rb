@@ -4,12 +4,12 @@ class FlavorsController < ApplicationController
   authorize_resource
 
   def index
-    
+    @active_flavors = Flavor.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    @inactive_flavors = Flavor.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 
   def show
-    # get the shift history for this assignment (later; empty now)
-    # @shifts = Array.new
+
   end
 
   def new
@@ -34,7 +34,13 @@ class FlavorsController < ApplicationController
   end
 
   def create
+    @flavor = Flavor.new(flavor_params)
     
+    if @flavor.save
+      redirect_to flavor_path(@flavor), notice: "Successfully created #{@flavor.name}."
+    else
+      render action: 'new'
+    end
   end
 
   def update

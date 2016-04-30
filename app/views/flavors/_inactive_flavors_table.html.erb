@@ -1,0 +1,35 @@
+<% if not @inactive_flavors.empty? %>
+	<table class="ui very basic collapsing celled table">
+		<thead>
+			<th>Flavor Name</th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+		<% for flavor in @inactive_flavors %>
+		<tr>
+			<td>
+				<%= link_to flavor.name, flavor_path(flavor) %>
+			</td>
+			<td>
+				<%= link_to 'Edit', edit_flavor_path(flavor) %>
+			</td>
+			<td>
+				<%= link_to 'Destroy', flavor, confirm: 'Are you sure?', method: :delete %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+		<tfoot>
+
+		<tr><th colspan="6">
+		<div class="ui right aligned">
+		<%= will_paginate @inactive_flavors, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'inactive_page', class: 'itemtags' %>
+		</div>
+		</th>
+		</tr>
+		</tfoot>
+	</table>
+<% else %>
+<p>There are no current inactive flavors. They should show the value of Flavor Name.</p>
+<% end %>
