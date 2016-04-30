@@ -4,12 +4,15 @@ class UsersController < ApplicationController
   authorize_resource
 
   def index
+    @active_users = User.active.paginate(page: params[:page]).per_page(10)
+    @inactive_users = User.inactive.paginate(page: params[:page]).per_page(10)
   end
 
   def show
   end
 
   def new
+    @user = User.new
   end
 
   def edit

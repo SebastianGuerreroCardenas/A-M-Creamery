@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   include CreameryHelpers::Validations
 
 
+  scope :active,       -> { joins(:employee).where("active = 't'") }
+  scope :inactive,     -> { joins(:employee).where("active = 'f'") }
+
   # Use built-in rails support for password protection
   has_secure_password
 

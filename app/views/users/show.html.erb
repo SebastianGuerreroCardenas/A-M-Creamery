@@ -1,0 +1,28 @@
+<div class="ui grid">
+	<div class="eight wide column">
+		<h1>User Details</h1>
+		<b>Name:</b> <%= @user.employee.name %>
+		<br/>
+		<br/>
+		<b>email:&nbsp;&nbsp;</b>
+		<br/>
+		  <%= @user.email %><br/>
+		  <br/><br/>
+
+		<b>Active: </b> 
+
+		<% if @user.employee.active? %>
+		 Yes
+		<% else %>
+		 No
+		<% end %>
+		<br/>
+		<br/>
+		<%= link_to "<button class='ui basic green button'>
+	  <i class='icon edit'></i>
+	  Edit User
+	</button>".html_safe, edit_user_path(@user)  %>
+	</div>
+	<br/>
+</div>
+<br/><br/>

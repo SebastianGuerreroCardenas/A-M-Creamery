@@ -31,6 +31,7 @@ class Employee < ActiveRecord::Base
   scope :managers,        -> { where(role: 'manager') }
   scope :admins,          -> { where(role: 'admin') }
   scope :alphabetical,    -> { order('last_name, first_name') }
+  scope :no_users,        -> { joins("LEFT OUTER JOIN users ON employees.id = users.employee_id").where('users.employee_id IS NULL') } 
   
   # Other methods
   def name
