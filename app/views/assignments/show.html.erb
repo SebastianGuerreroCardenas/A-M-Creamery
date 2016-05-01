@@ -1,0 +1,64 @@
+<div class="ui grid">
+	<div class="eight wide column">	
+		<h1>Employee Details</h1>
+
+		<b>Name:</b> <%= link_to @assignment.employee.name, employee_path(@assignment.employee) %>
+		<br/>
+		<br/>
+		<b>Phone:</b> <%= number_to_phone @assignment.employee.phone %>
+		<br/>
+		<br/>
+		<b>Role:</b> <%= @assignment.employee.role.titleize %>
+		<br/>
+		<br/>
+
+		<%= link_to "<button class='ui basic green button'>
+	  <i class='icon edit'></i>
+	  Edit Assignment
+	</button>".html_safe, edit_assignment_path(@assignment)  %>
+	</div>
+	<br/>
+	<div class="six wide column">
+		<h1>Shift History</h1>
+		<br/>
+		<table class="ui very basic collapsing celled table">
+			<thead>
+				<th></th>
+				<th>Date</th>
+				<th>Start Time</th>
+				<th>End Time</th>
+				<th>Notes</th>
+			</thead>
+			<tbody>
+			<% for shift in @shifts %>
+			<tr>
+				<td>
+					<%= link_to "view", shift_path(shift) %>
+				</td>
+				<td>
+					<%= shift.date.strftime("%m/%d/%y") %>
+				</td>
+				<td>
+					<%= shift.start_time.strftime("%I:%M %p") %>
+				</td>
+				<td>
+					<%= shift.end_time.strftime("%I:%M %p") %>
+				</td>
+				<td>
+					<%= shift.notes == nil ? "None" : shift.notes %>
+				</td>
+			</tr>
+			<% end %>
+			</tbody>
+			<tfoot>
+
+			<tr><th colspan="6">
+			<div class="ui right aligned">
+			<%= will_paginate @shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
+			</div>
+			</th>
+			</tr>
+			</tfoot>
+		</table><br/><br/>
+	</div>
+</div>

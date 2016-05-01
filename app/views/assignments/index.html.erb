@@ -1,22 +1,31 @@
+<div class="ui top pink secondary menu">
+  <a class="item active" data-tab="first">Current</a>
+  <a class="item" data-tab="second">Inactive</a>
+</div>
+
+<div class="ui bottom tab active" data-tab="first">
+	<div class="ui grid">
+	<div class="two column row">
+		<div class="column">
+			<h1>Current Assignments</h1>
+
+			<%= render 'current_assignments_table' %>
+
+			<%= link_to "<button class='ui green basic button'>
+			  <i class='icon suitcase'></i>
+			  Create an Assignment
+			</button>".html_safe, new_assignment_path %>
+
+		</div>
+	</div>
+	</div>
+</div>
+
+<div class="ui bottom tab" data-tab="second">
+  
 <div class="ui grid">
 <div class="two column row">
-    <div class="column">
-
-
-	<h1>Current Assignments</h1>
-
-	<%= render 'current_assignments_table' %>
-
-	<%= link_to "<button class='ui green basic button'>
-	  <i class='icon suitcase'></i>
-	  Create an Assignment
-	</button>".html_safe, new_assignment_path %>
-
-	</div>
-	
-
 	<div class="column">
-
 	<h1>Past Assignments</h1>
 
 
@@ -25,3 +34,7 @@
 	</div>
 </div>
 </div>
+	
+
+</div>
+

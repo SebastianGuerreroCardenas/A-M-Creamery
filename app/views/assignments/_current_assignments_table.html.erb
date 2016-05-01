@@ -2,6 +2,7 @@
 <% if not @current_assignments.empty? %>
 	<table class="ui very basic collapsing celled table">
 		<thead>
+			<th></th>
 			<th>Store</th>
 			<th>Employee</th>
 			<th>Pay</th>
@@ -12,6 +13,9 @@
 		<tbody>
 		<% for assignment in @current_assignments %>
 		<tr>
+			<td>
+				<%= link_to "view", assignment_path(assignment) %>
+			</td>
 			<td>
 				<%= link_to assignment.store.name, store_path(assignment.store) %>
 			</td>

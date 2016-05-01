@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:edit, :update, :destroy]
+  # before_action :set_assignment, only: [:edit, :update, :destroy]
   before_action :check_login
   authorize_resource
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
@@ -11,7 +11,7 @@ class AssignmentsController < ApplicationController
 
   def show
     # get the shift history for this assignment (later; empty now)
-    @shifts = @assignment.shifts
+    @shifts = @assignment.shifts.chronological.paginate(page: params[:page]).per_page(5)
   end
 
   def new
