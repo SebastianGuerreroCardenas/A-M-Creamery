@@ -21,6 +21,7 @@
 	<div class="six wide column">
 		<h1>Shift History</h1>
 		<br/>
+		<% if not @shifts.empty? %>
 		<table class="ui very basic collapsing celled table">
 			<thead>
 				<th></th>
@@ -59,6 +60,10 @@
 			</th>
 			</tr>
 			</tfoot>
-		</table><br/><br/>
+		</table>
+		<% else %>
+		<p>There are no current shifts.</p>
+		<% end %>
+		<br/><br/>
 	</div>
 </div>

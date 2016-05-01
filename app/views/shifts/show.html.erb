@@ -1,0 +1,69 @@
+<div class="ui grid">
+	<div class="eight wide column">	
+		<h1>Employee Details</h1>
+
+		<b>Name:</b> <%= link_to @shift.employee.name, employee_path(@shift.employee) %>
+		<br/>
+		<br/>
+		<b>Phone:</b> <%= number_to_phone @shift.employee.phone %>
+		<br/>
+		<br/>
+		<b>Role:</b> <%= @shift.employee.role.titleize %>
+		<br/>
+		<br/>
+		<b>Date:</b> <%= @shift.date.strftime("%m/%d/%y") %>
+		<br/>
+		<br/>
+		<b>Start Time:</b> <%= @shift.start_time.strftime("%I:%M %p") %>
+		<br/>
+		<br/>
+		<b>End Time:</b> <%= @shift.end_time.strftime("%I:%M %p") %>
+		<br/>
+		<br/>
+		<b>Notes:</b> <%= @shift.notes == nil ? "None" : shift.notes %>
+		<br/>
+		<br/>
+
+		<%= link_to "<button class='ui basic green button'>
+	  <i class='icon edit'></i>
+	  Edit Shift
+	</button>".html_safe, edit_shift_path(@shift)  %>
+	</div>
+	<br/>
+	<div class="six wide column">
+		<h1>Job History</h1>
+		<br/>
+		<% if not @jobs.empty? %>
+		<table class="ui very basic collapsing celled table">
+			<thead>
+				<th>Name</th>
+				<th>Description</th>
+			</thead>
+			<tbody>
+			<% for job in @jobs %>
+			<tr>
+				<td>
+					<%= link_to job.name, job_path(job) %>
+				</td>
+				<td>
+					<%= job.description %>
+				</td>
+			</tr>
+			<% end %>
+			</tbody>
+			<tfoot>
+
+			<tr><th colspan="6">
+			<div class="ui right aligned">
+			<%= will_paginate @jobs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
+			</div>
+			</th>
+			</tr>
+			</tfoot>
+		</table>
+		<% else %>
+		<p>There are no current jobs.</p>
+<% end %>
+		<br/><br/>
+	</div>
+</div>

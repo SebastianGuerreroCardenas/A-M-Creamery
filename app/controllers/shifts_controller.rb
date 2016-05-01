@@ -9,7 +9,7 @@ class ShiftsController < ApplicationController
 
   def show
     # get the shift history for this assignment (later; empty now)
-    # @shifts = Array.new
+     @jobs = @shift.jobs.alphabetical.paginate(page: params[:page]).per_page(5)
   end
 
   def new
