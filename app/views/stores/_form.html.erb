@@ -1,4 +1,5 @@
 <%= form_for @store do |f| %>
+<%= hidden_field_tag "book[author_ids][]", nil%>
   <% if @store.errors.any? %>
       <div id="error_explanation" class="ui red message">
           <i class="close icon"></i>
@@ -44,6 +45,17 @@
           <%= f.text_field :phone %>
       </div>
   </div>
+<h4 class="ui dividing header">Flavors</h4>
+
+  
+    <% Flavor.active.alphabetical.all.each do |flavor| %>
+      <%= check_box_tag "store[flavor_ids][]",flavor.id,@store.flavors.include?(flavor) %>
+      <%= flavor.name %>
+      <br />
+    <% end %>
+  
+
+
   <div>
       <p><%= f.submit class: 'ui basic blue button' %></p>
   </div>
