@@ -35,40 +35,9 @@
 	<div class="six wide column">
 		<h1>Assignment History</h1>
 		<br/>
-		<table class="ui very basic collapsing celled table">
-			<thead>
-				<th></th>
-				<th>Stores</th>
-				<th>Start Date</th>
-				<th>Finished</th>
-			</thead>
-			<tbody>
-			<% for assignment in @assignments%>
-			<tr>
-				<td>
-					<%= link_to "view", assignment_path(assignment) %>
-				</td>
-				<td>
-					<%= link_to assignment.store.name, store_path(assignment.store) %>
-				</td>
-				<td>
-					<%= assignment.start_date.strftime("%m/%d/%y") %>
-				</td>
-				<td>
-					<%= assignment.end_date == nil ? "No" :  assignment.end_date.strftime("%m/%d/%y") %>
-				</td>
-			</tr>
-			<% end %>
-			</tbody>
-			<tfoot>
+			
+			<%= render 'assignment_history_table' %>
 
-			<tr><th colspan="6">
-			<div class="ui right aligned">
-			<%= will_paginate @assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
-			</div>
-			</th>
-			</tr>
-			</tfoot>
-		</table><br/><br/>
+		<br/><br/>
 	</div>
 </div>
