@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require semantic_ui/semantic_ui
+//= require jquery_nested_form
 //= require_tree .
 
 // adds the item class to all a tags, that have itemtags
@@ -62,6 +64,7 @@ $('.ui.dropdown')
   })
 ;
 
+$('#datepicker').datepicker();
 
 $('.menu .item')
   .tab()

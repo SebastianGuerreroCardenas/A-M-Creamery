@@ -1,0 +1,81 @@
+<%= nested_form_for @employee do |f| %>
+<% if @employee.errors.any? %>
+<div id="error_explanation" class="ui red message">
+    <i class="close icon"></i>
+    <div class="header">
+        <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this Employee from being saved:</h2>
+    </div>
+    <ul class="list">
+        <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<h4 class="ui dividing header">Basic Information</h4>
+<div class="fields">
+    <div class="required field">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+    </div>
+    <div class="required field">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+    </div>
+</div>
+<div class="fields">
+    <div class="required field">
+        <%= f.label :ssn %>
+        <%= f.text_field :ssn %>
+    </div>
+</div>
+<div class="required field">
+    <%= f.label :date_of_birth %>
+    <div class="fields">
+        <%= f.date_select :date_of_birth, order: [:month, :day, :year], start_year: 150.year.ago.year, end_year: 14.year.ago.year, id: 'date'%>
+    </div>
+</div>
+<h4 class="ui dividing header">Work Information</h4>
+<div class="fields">
+    <div class="required field">
+        <%= f.label :role %>
+        <%= f.select(:role, Employee::ROLES_LIST) %>
+    </div>
+</div>
+<div class="fields">
+    <div class="required field">
+        <%= f.label :phone %>
+        <%= f.text_field :phone %>
+    </div>
+</div>
+<div class="inline field">
+    <%= f.label :active %>
+    <div class="ui checkbox">
+        <%= f.check_box :active %>
+    </div>
+</div>
+    <h4 class="ui dividing header">User Info.</h4>
+    <%= f.fields_for :user, :wrapper => false do |user_form| %>
+    <div class="field">
+        <div class="required field">
+            <%= f.label :email %>
+            <%= user_form.text_field :email %>
+        </div>
+    </div>
+
+    <div class="fields">
+        <div class="required field">
+            <%= f.label :password %>
+            <%= user_form.password_field :password %>
+        </div>
+        <div class="required field">
+            <%= f.label :password_confirmation %>
+            <%= user_form.password_field :password_confirmation %>
+        </div>
+    </div>
+    <% end %>
+    <br>
+    <p><%= f.submit class: 'ui basic blue button' %></p>
+
+<% end %>
+<br/>
