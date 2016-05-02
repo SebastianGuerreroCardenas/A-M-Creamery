@@ -4,8 +4,8 @@ class FlavorsController < ApplicationController
   authorize_resource
 
   def index
-    @active_flavors = Flavor.active.alphabetical.paginate(page: params[:page]).per_page(10)
-    @inactive_flavors = Flavor.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+    @active_flavors = Flavor.active.alphabetical.paginate(page: params[:active_page]).per_page(10)
+    @inactive_flavors = Flavor.inactive.alphabetical.paginate(page: params[:inactive_page]).per_page(10)
   end
 
   def show

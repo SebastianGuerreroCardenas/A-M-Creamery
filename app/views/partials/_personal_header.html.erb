@@ -3,7 +3,7 @@
     <%= logged_in?.employee.name %>
     <i class="dropdown icon"></i>
     <div class="menu">
-      <%= link_to 'Edit Settings', edit_user_path(logged_in?), class: "item" %>
+      <%= link_to 'Edit Settings', edit_employee_path(logged_in?.employee.id), class: "item" %>
       <%= link_to "Logout", logout_path, class: "item" %>
     </div>
   </div>
