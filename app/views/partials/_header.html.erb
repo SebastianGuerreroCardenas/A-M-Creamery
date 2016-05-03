@@ -9,8 +9,6 @@
 
       <%= link_to 'Home', home_path, class: (params[:controller] == 'home' ? "item active" : "item" ) %>
       <%= link_to 'Stores', stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
-      <%= link_to 'Employees', employees_path, class:(params[:controller] == 'employees' ? "item active" : "item" )%>
-      <%= link_to 'Assignments', assignments_path, class:(params[:controller] == 'assignments' ? "item active" : "item" ) %>
 
       <div id="topmenu" class="right item">
       <%= link_to "Employee Login", login_path, class: "ui inverted button" %>

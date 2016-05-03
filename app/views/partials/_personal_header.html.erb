@@ -10,6 +10,13 @@
 
 </div>
 <div class="ui left thin visible vertical inverted sidebar labeled icon menu">
+  <div class="item">
+    <i class="user icon"></i>
+    <h3>Hello <%= logged_in?.employee.first_name %>!</h3>
+  <br>
+  <br>
+  </div>
+
    <%= link_to '<i class="dashboard icon"></i> Dashboard'.html_safe, dashboard_path, class: (params[:controller] == 'dashboard' ? "item active" : "item" ) %>
    <%= link_to '<i class="food icon"></i> Stores'.html_safe, stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
    <%= link_to '<i class="skyatlas icon"></i> Flavors'.html_safe, flavors_path, class:(params[:controller] == 'flavors' ? "item active" : "item" ) %>

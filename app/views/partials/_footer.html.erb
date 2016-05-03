@@ -4,7 +4,15 @@
  	<div  id="footer" class="ui inverted vertical footer segment">
  		<div class="ui center aligned container">
  			<div class="ui horizontal inverted small divided link list">
-		 		<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+
+ 				<% if logged_in? %>
+ 				<%= link_to "Logout", logout_path %>
+ 				<% else %>
+		 		<%= link_to 'Home', home_path %>
+		 		<% end %>
+
+
+		 		&nbsp;&nbsp;::&nbsp;&nbsp;
 			  	<%= link_to 'About A&M Cremary', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
 				<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
 				<%= link_to 'Privacy Policy', privacy_path %>
