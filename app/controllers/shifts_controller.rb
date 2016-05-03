@@ -4,7 +4,8 @@ class ShiftsController < ApplicationController
   authorize_resource
 
   def index
-    
+    @upcoming_shifts = Shift.upcoming.by_store.by_employee.chronological.paginate(page: params[:upcoming_page]).per_page(15)
+    @past_shifts = Shift.past.by_store.by_employee.chronological.paginate(page: params[:past_page]).per_page(15) 
   end
 
   def show
@@ -56,7 +57,7 @@ class ShiftsController < ApplicationController
   end
 
   def shift_params
-    params.require(:shift).permit(:assignment_id, :date, :start_time, :end_time, :notes, :flavor_ids => [])
+    params.require(:shift).permit(:assignment_id, :date, :start_time, :end_time, :notes, :job_ids => [])
   end
 
 end
