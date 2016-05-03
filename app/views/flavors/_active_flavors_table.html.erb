@@ -2,8 +2,10 @@
 	<table class="ui very basic collapsing celled table">
 		<thead>
 			<th>Flavor Name</th>
+			<% if can? :update, Flavor %>
 			<th></th>
 			<th></th>
+			<% end %>
 		</thead>
 		<tbody>
 		<% for flavor in @active_flavors %>
@@ -11,12 +13,14 @@
 			<td>
 				<%= link_to flavor.name, flavor_path(flavor) %>
 			</td>
+			<% if can? :update, Flavor %>
 			<td>
 				<%= link_to 'Edit', edit_flavor_path(flavor) %>
 			</td>
 			<td>
 				<%= link_to 'Destroy', flavor, confirm: 'Are you sure?', method: :delete %>
 			</td>
+			<% end %>
 		</tr>
 		<% end %>
 		</tbody>

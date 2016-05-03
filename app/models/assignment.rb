@@ -33,6 +33,11 @@ class Assignment < ActiveRecord::Base
   scope :for_pay_level, ->(pay_level) { where("pay_level = ?", pay_level) }
   scope :for_role,      ->(role) { joins(:employee).where("role = ?", role) }
 
+
+  def current?
+    self.end_date == nil
+  end
+
   # Private methods for callbacks and custom validations
   private  
   

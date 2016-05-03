@@ -11,6 +11,12 @@
 		<b>Role:</b> <%= @assignment.employee.role.titleize %>
 		<br/>
 		<br/>
+		<b>Start Date:</b> <%= @assignment.start_date.strftime("%m/%d/%y") %>
+		<br/>
+		<br/>
+		<b>End Date:</b> <%= @assignment.end_date == nil ? "N/A" : @assignment.end_date.strftime("%m/%d/%y") %>
+		<br/>
+		<br/>
 
 		<%= link_to "<button class='ui basic green button'>
 	  <i class='icon edit'></i>

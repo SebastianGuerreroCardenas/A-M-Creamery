@@ -4,6 +4,15 @@ class HomeController < ApplicationController
   end
 
   def dashboard
+    if logged_in?
+      if current_user.employee.role == "admin"
+        @msg= "admin"
+      elsif current_user.employee.role == "manager"
+        @msg= "manager"
+      else
+         @msg= "employee"
+      end
+    end
   end
 
   def about

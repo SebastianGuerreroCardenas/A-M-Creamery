@@ -21,11 +21,21 @@ class Ability
          unless user.employee.current_assignment.nil?
             my_store_id = user.employee.current_assignment.store.id
             #checks that the employee has an assingment
-            if not this_employee.current_assignment.current_assignment.nil?
+            if not this_employee.current_assignment.nil?
                 my_store_id == this_employee.current_assignment.store.id
             end
          end
       end
+
+      can :read, Assignment do |this_assignment| 
+         #checks that the current manger has an assignment
+         unless user.employee.current_assignment.nil?
+            my_store_id = user.employee.current_assignment.store.id
+            # checks that the employee has an assingment
+            my_store_id == this_assignment.store.id and this_assignment.current?
+         end
+      end
+
       # # they can read only employees who are in their store
       can :manage, Shift do |this_shift| 
          #checks that the current manger has an assignment
@@ -34,6 +44,8 @@ class Ability
             my_store_id == this_shift.store.id
          end
       end
+
+
     elsif user.role? :employee
       #can read store, job and flavor
       can :read, Store

@@ -3,8 +3,10 @@
 	<table class="ui very basic collapsing celled table">
 	<thead>
 		<th>Store Name</th>
+		<% if can? :update, Store %>
 		<th></th>
 		<th></th>
+		<% end %>
 	</thead>
 	<tbody>
 	<% for store in @inactive_stores %>
@@ -12,12 +14,14 @@
 		<td>
 			<%= link_to store.name, store_path(store) %>
 		</td>
+		<% if can? :update, Store %>
 		<td>
 			<%= link_to 'Edit', edit_store_path(store) %>
 		</td>
 		<td>
 			<%= link_to 'Destroy', store, confirm: 'Are you sure?', method: :delete %>
 		</td>
+		<% end %>
 	</tr>
 	<% end %>
 	</tbody>

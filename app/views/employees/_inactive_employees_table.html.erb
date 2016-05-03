@@ -5,8 +5,10 @@
 			<th>Name</th>
 			<th>Phone</th>
 			<th>Role</th>
+			<% if can? :update, Employee %>
 			<th></th>
 			<th></th>
+			<% end %>
 		</thead>
 		<tbody>
 		<% for employee in @inactive_employees %>
@@ -20,12 +22,14 @@
 			<td>
 				<%= employee.role.titleize %>
 			</td>
+			<% if can? :update, Employee %>
 			<td>
 				<%= link_to 'Edit', edit_employee_path(employee) %>
 			</td>
 			<td>
 				<%= link_to 'Destroy', employee, confirm: 'Are you sure?', method: :delete %>
 			</td>
+			<% end %>
 		</tr>
 		<% end %>
 		</tbody>

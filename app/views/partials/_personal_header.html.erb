@@ -20,7 +20,12 @@
    <%= link_to '<i class="dashboard icon"></i> Dashboard'.html_safe, dashboard_path, class: (params[:controller] == 'dashboard' ? "item active" : "item" ) %>
    <%= link_to '<i class="food icon"></i> Stores'.html_safe, stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
    <%= link_to '<i class="skyatlas icon"></i> Flavors'.html_safe, flavors_path, class:(params[:controller] == 'flavors' ? "item active" : "item" ) %>
-   <%= link_to '<i class="users icon"></i> Employees'.html_safe, employees_path, class:(params[:controller] == 'employees' ? "item active" : "item" )%>
+   
+   <% if can? :read, Employee %>
+    <%= link_to '<i class="users icon"></i> Employees'.html_safe, employees_path, class:(params[:controller] == 'employees' ? "item active" : "item" )%>
+  <% end %>
+
+
    <%= link_to '<i class="suitcase outline icon"></i> Assignments'.html_safe, assignments_path, class:(params[:controller] == 'assignments' ? "item active" : "item" ) %>
    <%= link_to '<i class="alarm outline icon"></i> Shifts'.html_safe, shifts_path, class:(params[:controller] == 'shifts' ? "item active" : "item" ) %>
    <%= link_to '<i class="configure icon"></i> Jobs'.html_safe, jobs_path, class:(params[:controller] == 'jobs' ? "item active" : "item" ) %>
