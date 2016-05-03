@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  before_action :set_store, only: [:show, :edit, :update, :destroy]
+  before_action :set_store, only: [:show, :edit, :update, :destroy, :edit_store_flavor]
   before_action :check_login, except: [:index, :show]
   authorize_resource
 
@@ -18,23 +18,37 @@ class StoresController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js 
+    end
+  end
+
+  def edit_store_flavor
+    respond_to do |format|
+      format.js 
+    end
   end
 
   def create
     @store = Store.new(store_params)
-    
-    if @store.save
-      redirect_to store_path(@store), notice: "Successfully created #{@store.name}."
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @store.save
+        format.js
+        redirect_to store_path(@store), notice: "Successfully created #{@store.name}."
+      else
+        render action: 'new'
+      end
     end
   end
 
   def update
-    if @store.update(store_params)
-      redirect_to store_path(@store), notice: "Successfully updated #{@store.name}."
-    else
-      render action: 'edit'
+    respond_to do |format|
+      if @store.update(store_params)
+        format.js
+        format.html {redirect_to store_path(@store), notice: "Successfully updated #{@store.name}."}
+      else
+        format.html { render action: 'edit'}
+      end
     end
   end
 
@@ -49,7 +63,11 @@ class StoresController < ApplicationController
   end
 
   def store_params
-    params.require(:store).permit(:name, :street, :city, :state, :zip, :phone, :active, :flavor_ids => [])
+    if current_user && current_user.role?(:admin)
+      params.require(:store).permit(:name, :street, :city, :state, :zip, :phone, :active, :flavor_ids => [])
+    else
+       params.require(:store).permit(:flavor_ids => [])
+    end
   end
 
 end

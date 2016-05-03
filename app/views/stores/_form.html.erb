@@ -1,5 +1,5 @@
 <%= form_for @store do |f| %>
-<%= hidden_field_tag "book[author_ids][]", nil%>
+<%= hidden_field_tag "store[flavor_ids][]", nil%>
   <% if @store.errors.any? %>
       <div id="error_explanation" class="ui red message">
           <i class="close icon"></i>

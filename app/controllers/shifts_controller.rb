@@ -4,8 +4,18 @@ class ShiftsController < ApplicationController
   authorize_resource
 
   def index
-    @upcoming_shifts = Shift.upcoming.by_store.by_employee.chronological.paginate(page: params[:upcoming_page]).per_page(15)
-    @past_shifts = Shift.past.by_store.by_employee.chronological.paginate(page: params[:past_page]).per_page(15) 
+    if logged_in?
+      if current_user.employee.role == "admin"
+        @upcoming_shifts = Shift.upcoming.by_store.by_employee.chronological.paginate(page: params[:upcoming_page]).per_page(15)
+        @past_shifts = Shift.past.by_store.by_employee.chronological.paginate(page: params[:past_page]).per_page(15)
+      elsif current_user.employee.role == "manager"
+        @upcoming_shifts = Shift.upcoming.for_store_current(current_user.employee.current_assignment.store.id).by_store.by_employee.chronological.paginate(page: params[:upcoming_page]).per_page(15)
+        @past_shifts = Shift.past.for_store_current(current_user.employee.current_assignment.store.id).by_store.by_employee.chronological.paginate(page: params[:past_page]).per_page(15)
+      else
+        @upcoming_shifts = Shift.for_employee(current_user.employee.id).upcoming.by_store.by_employee.chronological.paginate(page: params[:upcoming_page]).per_page(15)
+        @past_shifts = Shift.for_employee(current_user.employee.id).past.by_store.by_employee.chronological.paginate(page: params[:past_page]).per_page(15)
+      end
+    end
   end
 
   def show

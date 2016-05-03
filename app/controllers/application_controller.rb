@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "You are not authorized to perform this action."
-    redirect_to home_path
+    redirect_to dashboard_path
   end
 
   private

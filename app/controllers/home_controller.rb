@@ -8,7 +8,10 @@ class HomeController < ApplicationController
       if current_user.employee.role == "admin"
         @msg= "admin"
       elsif current_user.employee.role == "manager"
-        @msg= "manager"
+        @active_employees = Employee.active.alphabetical.for_store(current_user.employee.current_assignment.store.id).paginate(page: params[:active_page]).per_page(10)
+        @upcoming_shifts = Shift.upcoming.for_store_current(current_user.employee.current_assignment.store.id).by_store.by_employee.chronological.paginate(page: params[:upcoming_page]).per_page(15)
+        @active_stores = Store.active.alphabetical.paginate(page: params[:active_page]).per_page(10)
+        @store = @current_user.employee.current_assignment.store
       else
          @msg= "employee"
       end

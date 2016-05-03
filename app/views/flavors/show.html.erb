@@ -14,10 +14,12 @@
 		<% end %>
 		<br/>
 		<br/>
-		<%= link_to "<button class='ui basic green button'>
-	  <i class='icon edit'></i>
-	  Edit Flavor
-	</button>".html_safe, edit_flavor_path(@flavor)  %>
+		<% if can? :update, Flavor %>
+			<%= link_to "<button class='ui basic green button'>
+		  <i class='icon edit'></i>
+		  Edit Flavor
+		</button>".html_safe, edit_flavor_path(@flavor)  %>
+	<% end %>
 	</div>
 	<br/>
 </div>

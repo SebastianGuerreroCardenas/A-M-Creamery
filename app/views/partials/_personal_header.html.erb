@@ -29,7 +29,10 @@
    <%= link_to '<i class="suitcase outline icon"></i> Assignments'.html_safe, assignments_path, class:(params[:controller] == 'assignments' ? "item active" : "item" ) %>
    <%= link_to '<i class="alarm outline icon"></i> Shifts'.html_safe, shifts_path, class:(params[:controller] == 'shifts' ? "item active" : "item" ) %>
    <%= link_to '<i class="configure icon"></i> Jobs'.html_safe, jobs_path, class:(params[:controller] == 'jobs' ? "item active" : "item" ) %>
+
+   <% if can? :read, User %>
    <%= link_to '<i class="database icon"></i> Users'.html_safe, users_path, class:(params[:controller] == 'users' ? "item active" : "item" ) %>
+   <% end %>
 
 </div>
 

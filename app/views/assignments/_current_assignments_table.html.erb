@@ -7,8 +7,10 @@
 			<th>Employee</th>
 			<th>Pay</th>
 			<th>Start Date</th>
+			<% if can? :update, Assignment %>
 			<th></th>
 			<th></th>
+			<%end%>
 		</thead>
 		<tbody>
 		<% for assignment in @current_assignments %>
@@ -28,12 +30,14 @@
 			<td>
 				<%= assignment.start_date.strftime("%m/%d/%y") %>
 			</td>
+			<% if can? :update, Assignment %>
 			<td>
 				<%= link_to 'Edit', edit_assignment_path(assignment) %>
 			</td>
 			<td>
 				<%= link_to 'Destroy', assignment, confirm: 'Are you sure?', method: :delete %>
 			</td>
+			<% end %>
 		</tr>
 		<% end %>
 		</tbody>

@@ -6,8 +6,17 @@ class AssignmentsController < ApplicationController
 
 
   def index
-    @current_assignments = Assignment.current.by_store.by_employee.chronological.paginate(page: params[:current_page]).per_page(10)
-    @past_assignments = Assignment.past.by_employee.by_store.paginate(page: params[:past_page]).per_page(15)  
+    if logged_in?
+      if current_user.employee.role == "admin"
+        @current_assignments = Assignment.current.by_store.by_employee.chronological.paginate(page: params[:current_page]).per_page(10)
+        @past_assignments = Assignment.past.by_employee.by_store.paginate(page: params[:past_page]).per_page(10)  
+      elsif current_user.employee.role == "manager"
+        @current_assignments = Assignment.current.by_employee.chronological.for_store(current_user.employee.current_assignment.store.id).paginate(page: params[:current_page]).per_page(10)
+      else
+        @current_assignments = Assignment.for_employee(current_user.employee.id).current.by_store.by_employee.chronological.paginate(page: params[:current_page]).per_page(10)
+        @past_assignments = Assignment.for_employee(current_user.employee.id).past.by_employee.by_store.paginate(page: params[:past_page]).per_page(10)  
+      end
+    end
   end
 
   def show

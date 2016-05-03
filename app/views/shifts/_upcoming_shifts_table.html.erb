@@ -10,8 +10,10 @@
 			<th>Start Time</th>
 			<th>End Time</th>
 			<th>Notes</th>
+			<% if can? :update, Shift %>
 			<th></th>
 			<th></th>
+			<% end %>
 		</thead>
 		<tbody>
 		<% for shift in @upcoming_shifts %>
@@ -40,12 +42,14 @@
 			<td>
 				<%= shift.notes == nil ? "None" : shift.notes %>
 			</td>
+			<% if can? :update, Shift %>
 			<td>
 				<%= link_to 'Edit', edit_shift_path(shift) %>
 			</td>
 			<td>
 				<%= link_to 'Destroy', shift, confirm: 'Are you sure?', method: :delete %>
 			</td>
+			<% end %>
 		</tr>
 		<% end %>
 		</tbody>

@@ -1,0 +1,32 @@
+<div class="ui three stackable cards">
+
+
+<% for store in @active_stores %>
+
+
+<%= link_to "
+
+    <div class='content'>
+        <div class='header'>#{store.name}</div>
+        <div class='meta'>
+          <span class='category'>#{store.city}</span>
+        </div>
+    <div class='description'>
+      <p>Adress: #{store.street}</p>
+      <p>Phone: #{number_to_phone store.phone}</p>
+    </div>
+  </div>
+  <div class='extra content'>
+    <div>
+        <i class='spoon icon'></i>
+      #{store.flavors.count} Flavors
+    </div>
+  </div>
+
+
+
+".html_safe, store_path(store), class: "ui pink card" %>
+
+<% end %>
+</div>
+

@@ -1,0 +1,35 @@
+<div class="ui small statistics">
+	<div class="pink statistic">
+    <div class="value">
+      <%= @active_employees.count %>
+    </div>
+    <div class="label">
+      Employees
+    </div>
+   </div>
+    <div class="pink statistic">
+	    <div class="value">
+	      <%= @upcoming_shifts.count %>
+	    </div>
+	    <div class="label">
+	      Upcoming Shifts
+	    </div>
+  </div>
+  <div class="pink statistic">
+	    <div class="value">
+	      <%= @upcoming_shifts.count %>
+	    </div>
+	    <div class="label">
+	      Completed Shifts
+	    </div>
+  </div>
+  <div class="pink statistic">
+	    <div class="value">
+	      <%= @upcoming_shifts.incomplete.count %>
+	    </div>
+	    <div class="label">
+	      Incompleted Shifts
+	    </div>
+  </div>
+</div>
+ 

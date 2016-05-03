@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
       elsif current_user.employee.role == "manager"
         @active_employees = Employee.active.alphabetical.for_store(current_user.employee.current_assignment.store.id).paginate(page: params[:active_page]).per_page(10)
       else
-         @msg= "employee"
+         
       end
     end
   end

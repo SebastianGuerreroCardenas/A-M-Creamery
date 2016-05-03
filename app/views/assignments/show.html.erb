@@ -17,11 +17,12 @@
 		<b>End Date:</b> <%= @assignment.end_date == nil ? "N/A" : @assignment.end_date.strftime("%m/%d/%y") %>
 		<br/>
 		<br/>
-
+		<% if can? :update, Assignment %>
 		<%= link_to "<button class='ui basic green button'>
 	  <i class='icon edit'></i>
 	  Edit Assignment
 	</button>".html_safe, edit_assignment_path(@assignment)  %>
+	<% end %>
 	</div>
 	<br/>
 	<div class="six wide column">

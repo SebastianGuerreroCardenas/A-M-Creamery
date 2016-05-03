@@ -1,32 +1,44 @@
-<div class="ui top pink secondary menu">
-  <a class="item active" data-tab="first">Current</a>
-  <a class="item" data-tab="second">Inactive</a>
-</div>
-<div class="ui bottom tab active" data-tab="first">
-	<div class="ui grid">
+<div class="ui grid">
 	<div class="two column row">
-		<div class="column">
-			<h1>Current Users</h1>
+	<div class="column">
+		<h1>Users</h1>
 
-				<%= render 'active_users_table' %>
+		<div class="ui top pink secondary menu">
+		  <a class="item active" data-tab="first">Current</a>
+		  <% if can? :update, User%>
+		  <a class="item" data-tab="second">Inactive</a>
+		  <% end %>
 
-				<%= link_to "<button class='ui basic green button'>
+		  <% if can? :update, User %>
+		  <div class="right ui item">
+			  	<%= link_to "<button class='ui basic green button'>
 	 						 <i class='icon food'></i>
 							  Add A User
 							</button>".html_safe, new_user_path  %>
+		  </div>
+		  <% end %>
 		</div>
-	</div>
-	</div>
-</div>
-<div class="ui bottom tab" data-tab="second">
-  
-<div class="ui grid">
-<div class="two column row">
-	<div class="column">
-	<h1>Inactive Users</h1>
+		<div class="ui divider"></div>
 
-	<%= render 'inactive_users_table' %>
-	</div>
+		<div class="ui bottom tab active" data-tab="first">
+		<%= render 'active_users_table' %>
+<br/>
+<br/>
+<br/>
+<br/>
+		</div>
+
+		<% if can? :update, User %>
+			<div class="ui bottom tab" data-tab="second">
+				<%= render 'inactive_users_table' %>
+				<br/>
+<br/>
+<br/>
+<br/>
+			</div>
+			<br/>
+		<% end %>
+
 </div>
 </div>
 </div>

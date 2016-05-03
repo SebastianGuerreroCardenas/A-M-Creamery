@@ -1,0 +1,3 @@
+<% for flavor in @store.flavors %>
+			<%= link_to flavor.name,  flavor_path(flavor), class: "ui pink label" %>
+<% end %>

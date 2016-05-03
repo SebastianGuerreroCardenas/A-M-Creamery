@@ -26,10 +26,12 @@
 		<% end %>
 		<br/>
 		<br/>
+		<% if can? :update, Employee %>
 		<%= link_to "<button class='ui basic green button'>
 	  <i class='icon edit'></i>
 	  Edit Employee
 	</button>".html_safe, edit_employee_path(@employee)  %>
+	<% end %>
 	</div>
 	<br/>
 	<% if current_user.employee.role == "admin"%>

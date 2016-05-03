@@ -18,10 +18,12 @@
 		<% end %>
 		<br/>
 		<br/>
+		<% if can? :update, Store %>
 		<%= link_to "<button class='ui basic green button'>
 	  <i class='icon edit'></i>
 	  Edit Store
 	</button>".html_safe, edit_store_path(@store)  %>
+	<% end %>
 	<br>
 	<br>
 	<h1>Flavors: </h1> 
@@ -31,7 +33,7 @@
 	<br>
 	</div>
 	<br/>
-	<% if current_user.employee.role == "admin"%>
+	<% if logged_in? and current_user.employee.role == "admin"%>
 	<div class="six wide column">
 		<h1>Current Employees</h1>
 		<br/>

@@ -1,1 +1,9 @@
-<%= @msg %>
+<% if logged_in? %>
+	<% if current_user.employee.role == "admin"%>
+
+	<% elsif current_user.employee.role == "manager"%>
+		<%= render 'manager_dashboard' %>
+	<% elsif current_user.employee.role == "employee"%>
+
+	<% end %>
+<% end %>
