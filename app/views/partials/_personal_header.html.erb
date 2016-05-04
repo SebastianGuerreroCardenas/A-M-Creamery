@@ -11,9 +11,11 @@
 </div>
 <div class="ui left thin visible vertical inverted sidebar labeled icon menu">
   <div class="item">
+  <%= link_to (image_tag 'logo.png', class: 'ui fluid image small'),home_path %>
+  <br>
     <i class="user icon"></i>
     <h3>Hello <%= logged_in?.employee.first_name %>!</h3>
-  <br>
+     
   <br>
   </div>
 

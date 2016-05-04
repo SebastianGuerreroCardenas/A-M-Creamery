@@ -5,6 +5,12 @@
       <div class="description">
       <div class="ui labels" >
       <%= link_to "Add Shift",  new_shift_path, class: "ui pink label" %>
+      <% if current_user.employee.role == "admin"%>
+        <%= link_to "Add Assignments",  new_assignment_path, class: "ui olive label" %>
+        <%= link_to "Add Store",  new_store_path, class: "ui olive label" %>
+        <%= link_to "Add Employee",  new_employee_path, class: "ui olive label" %>
+        <%= link_to "Add Job",  new_job_path, class: "ui olive label" %>
+      <% end%>
       
         
 	    </div>
