@@ -17,6 +17,15 @@ class Ability
       can :read, Flavor
       can :edit_store_flavor, Store
 
+
+      can :show, Employee do |u|  
+        u.id == user.employee.id
+      end
+      # they can update their own profile
+      can :update, Employee do |u|  
+        u.id == user.employee.id
+      end
+
       can :update, Store do |this_store|
         unless user.employee.current_assignment.nil?
             my_store_id = user.employee.current_assignment.store.id
@@ -71,13 +80,13 @@ class Ability
       can :update, User do |u|  
         u.id == user.id
       end
-
+      
       can :show, Employee do |u|  
         u.id == user.employee.id
       end
       # they can update their own profile
       can :update, Employee do |u|  
-        u.id == user.id
+        u.id == user.employee.id
       end
 
       # they can read their own assignments

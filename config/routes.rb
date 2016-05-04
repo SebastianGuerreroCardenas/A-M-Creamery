@@ -27,8 +27,8 @@ Rails.application.routes.draw do
   get 'edit_store_flavor/:id' => 'stores#edit_store_flavor', :as => :edit_store_flavor
 
 
-  get 'start_shift' => 'shifts#start_shift', :as => :start_shift
-  get 'end_shift' => 'shifts#end_shift', :as => :end_shift
+  post 'start_shift/:id' => 'shifts#start_shift', :as => :start_shift
+  post 'end_shift/:id' => 'shifts#end_shift', :as => :end_shift
   # Set the root url
   root :to => 'home#home'  
   

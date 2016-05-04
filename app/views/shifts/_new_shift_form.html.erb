@@ -1,3 +1,4 @@
+<div class="ui pink segment">
 <%= form_for @shift, remote: true do |f| %>
   <% if @shift.errors.any? %>
       <div id="error_explanation" class="ui red message">
@@ -17,7 +18,7 @@
       <div class="required eight wide field">
               <%= f.label :assignment_id %>
               <%= f.select :assignment_id,get_assignment_for_adding_shift(params[:employee_id])%> 
-
+      </div>
   </div>
 
   <h4 class="ui dividing header">Times</h4>
@@ -48,6 +49,8 @@
 
   <div>
       <p><%= f.submit nil ,class: 'ui basic blue button' %></p>
+      <%= link_to 'Cancel', employee_path(params[:employee_id]), class: 'ui red button' %>
   </div>
   <% end %>
 <br/>
+</div>

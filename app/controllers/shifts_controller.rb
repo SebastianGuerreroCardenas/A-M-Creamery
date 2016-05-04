@@ -66,14 +66,20 @@ class ShiftsController < ApplicationController
     authorize! :update, @shift
     @shift.start_now
     @shift.save
-    redirect_to dashboard_path
+    respond_to do |format|
+      @upcoming_shifts_for_employee = Shift.upcoming.for_store_current(current_user.employee.current_assignment.store.id).for_employee(current_user.employee.id).by_store.by_employee.chronological.paginate(page: params[:upcoming_shifts_for_employee]).per_page(15)
+
+      format.js {}
+    end  
   end
 
   def end_shift
     authorize! :update, @shift
     @shift.end_now
     @shift.save
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.js {}
+    end
   end
 
 

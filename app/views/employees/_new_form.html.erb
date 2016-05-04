@@ -23,37 +23,43 @@
         <%= f.text_field :last_name %>
     </div>
 </div>
+<% if current_user.employee.role == "admin"%>
 <div class="fields">
     <div class="required field">
         <%= f.label :ssn %>
         <%= f.text_field :ssn %>
     </div>
 </div>
+<% end %>
 <div class="required field">
     <%= f.label :date_of_birth %>
     <div class="fields">
-        <%= f.date_select :date_of_birth, order: [:month, :day, :year], start_year: 150.year.ago.year, end_year: 14.year.ago.year, id: 'date'%>
+        <%= f.date_field :date_of_birth, order: [:month, :day, :year], start_year: 100.year.ago.year, end_year: 14.year.ago.year, id: 'date'%>
     </div>
 </div>
 <h4 class="ui dividing header">Work Information</h4>
+<% if current_user.employee.role == "admin"%>
 <div class="fields">
     <div class="required field">
         <%= f.label :role %>
         <%= f.select(:role, Employee::ROLES_LIST) %>
     </div>
 </div>
+<% end %>
 <div class="fields">
     <div class="required field">
         <%= f.label :phone %>
         <%= f.text_field :phone %>
     </div>
 </div>
+<% if current_user.employee.role == "admin"%>
 <div class="inline field">
     <%= f.label :active %>
     <div class="ui checkbox">
         <%= f.check_box :active %>
     </div>
 </div>
+<% end %>
     <h4 class="ui dividing header">User Info.</h4>
     <%= f.fields_for :user, :wrapper => false do |user_form| %>
     <div class="field">
