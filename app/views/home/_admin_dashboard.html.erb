@@ -1,49 +1,35 @@
 <div class="ui grid">
-<div class="fourteen wide column">
-<h1>Management View</h1>
-<% Store.active.each do |store| %>
-  <a class="ui button <%= @store_id.to_s == store.id.to_s ? 'pink' : '' %>" href="<%= dashboard_path %>?store=<%= store.id %>"><%=store.name%></a>
-
-<% end %>
-<br>
-<br>
-<div class="ui divider"></div>
+  <div class="fourteen wide column">
+    <h1>Management View</h1>
+    <% Store.active.each do |store| %>
+    <a class="ui button <%= @store_id.to_s == store.id.to_s ? 'pink' : '' %>" href="<%= dashboard_path %>?store=<%= store.id %>"><%=store.name%></a>
+    <% end %>
+    <br>
+    <br>
+    <div class="ui divider"></div>
+  </div>
 </div>
-</div>
-
 <div>
   <div class="ui grid">
-  <div class="ten wide column">
-
-  	<div class="ui grid">
-	  	<div class="eight wide column">
-	  	<%= render 'store_flavor_stats' %>
-	  	</div>
-	  	<div class="eight wide column">
-	  	<%= render 'quick_access_buttons' %>
-	  	</div>
-
-  	</div>
-  	<%= render 'manager_stats' %>
-  	<%= render 'upcoming_shifts_table_of_employees' %>
+    <div class="ten wide column">
+      <div class="ui grid">
+        <div class="eight wide column">
+          <%= render 'store_flavor_stats' %>
+        </div>
+        <div class="eight wide column">
+          <%= render 'quick_access_buttons' %>
+        </div>
+      </div>
+      <%= render 'manager_stats' %>
+      <%= render 'upcoming_shifts_table_of_employees' %>
+    </div>
+    <div class="four wide column" id="incomplete_shifts_column">
+      <%= render 'incomplete_shifts_stats' %>
+    </div>
+    <div class="two wide column"></div>
   </div>
-  <div class="four wide column" id="incomplete_shifts_column">
-  	<%= render 'incomplete_shifts_stats' %>
-  </div>
-  <div class="two wide column"></div>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
-<br>
-<br>
-<br>
-<br>
-
-</div>
-
-
-
-
-
-
-
-
-

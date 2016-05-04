@@ -1,18 +1,18 @@
 <%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
 <% if not @current_assignments.empty? %>
-	<table class="ui very basic collapsing celled table">
-		<thead>
-			<th></th>
-			<th>Store</th>
-			<th>Employee</th>
-			<th>Pay</th>
-			<th>Start Date</th>
-			<% if can? :update, Assignment %>
-			<th></th>
-			<th></th>
-			<%end%>
-		</thead>
-		<tbody>
+<table class="ui very basic collapsing celled table">
+	<thead>
+		<th></th>
+		<th>Store</th>
+		<th>Employee</th>
+		<th>Pay</th>
+		<th>Start Date</th>
+		<% if can? :update, Assignment %>
+		<th></th>
+		<th></th>
+		<%end%>
+	</thead>
+	<tbody>
 		<% for assignment in @current_assignments %>
 		<tr>
 			<td>
@@ -40,17 +40,16 @@
 			<% end %>
 		</tr>
 		<% end %>
-		</tbody>
-		<tfoot>
-
-		<tr><th colspan="6">
+	</tbody>
+	<tfoot>
+	<tr><th colspan="6">
 		<div class="ui right aligned">
-		<%= will_paginate @current_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'current_page', class: 'itemtags' %>
+			<%= will_paginate @current_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'current_page', class: 'itemtags' %>
 		</div>
-		</th>
-		</tr>
-		</tfoot>
-	</table>
+	</th>
+</tr>
+</tfoot>
+</table>
 <% else %>
 <p>There are no current assignments. They should show the value of Store, Employee, Pay, and Start Date.</p>
 <% end %>
