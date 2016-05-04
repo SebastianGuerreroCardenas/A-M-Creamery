@@ -6,22 +6,20 @@
 		<br/>
 		<b>email:&nbsp;&nbsp;</b>
 		<br/>
-		  <%= @user.email %><br/>
-		  <br/><br/>
-
-		<b>Active: </b> 
-
+		<%= @user.email %><br/>
+		<br/><br/>
+		<b>Active: </b>
 		<% if @user.employee.active? %>
-		 Yes
+		Yes
 		<% else %>
-		 No
+		No
 		<% end %>
 		<br/>
 		<br/>
 		<%= link_to "<button class='ui basic green button'>
-	  <i class='icon edit'></i>
-	  Edit User
-	</button>".html_safe, edit_user_path(@user)  %>
+		<i class='icon edit'></i>
+		Edit User
+		</button>".html_safe, edit_user_path(@user)  %>
 	</div>
 	<br/>
 </div>

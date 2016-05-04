@@ -1,56 +1,55 @@
-c<%#checks if there are any elements in the employee, if so returns a table, else returns a statement %>
+<%#checks if there are any elements in the employee, if so returns a table, else returns a statement %>
 <% if not @active_employees.empty? %>
-	<table class="ui very basic collapsing celled table">
-		<thead>
-			<th>Name</th>
-			<th>Phone</th>
-			<th>Currently Assigned</th>
-			<th>Role</th>
+<table class="ui very basic collapsing celled table">
+	<thead>
+		<th>Name</th>
+		<th>Phone</th>
+		<th>Currently Assigned</th>
+		<th>Role</th>
+		<% if can? :update, Employee %>
+		<th></th>
+		<th></th>
+		<% end %>
+	</thead>
+	<tbody>
+		<% for employee in @active_employees %>
+		<tr>
+			<td>
+				<%= link_to employee.name, employee_path(employee)%>
+			</td>
+			<td>
+				<%= number_to_phone employee.phone %>
+			</td>
+			<td>
+				<% if employee.current_assignment == nil %>
+				No Store Assigned.
+				<% else %>
+				<%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) %>
+				<% end %>
+			</td>
+			<td>
+				<%= employee.role.titleize %>
+			</td>
 			<% if can? :update, Employee %>
-				<th></th>
-				<th></th>
+			<td>
+				<%= link_to 'Edit', edit_employee_path(employee) %>
+			</td>
+			<td>
+				<%= link_to 'Destroy', employee, method: :delete, data: {confirm: 'Are you sure?'} %>
+			</td>
 			<% end %>
-		</thead>
-		<tbody>
-			<% for employee in @active_employees %>
-				<tr>
-					<td>
-						<%= link_to employee.name, employee_path(employee)%>
-					</td>
-					<td>
-						<%= number_to_phone employee.phone %>
-					</td>
-					<td>
-						<% if employee.current_assignment == nil %>
-							No Store Assigned.
-						<% else %>
-							<%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) %>
-						<% end %>
-					</td>
-					<td>
-						<%= employee.role.titleize %>
-					</td>
-					<% if can? :update, Employee %>
-						<td>
-							<%= link_to 'Edit', edit_employee_path(employee) %>
-						</td>
-						<td>
-							<%= link_to 'Destroy', employee, method: :delete, data: {confirm: 'Are you sure?'} %>
-						</td>
-					<% end %>
-				</tr>
-			<% end %>
-		</tbody>
-		<tfoot>
-
-		<tr><th colspan="6">
-		<div class="ui right aligned">
-		<%= will_paginate @active_employees, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'active_page', class: 'itemtags' %>
-		</div>
-		</th>
 		</tr>
-		</tfoot>
-	</table>
+		<% end %>
+	</tbody>
+	<tfoot>
+	<tr><th colspan="6">
+		<div class="ui right aligned">
+			<%= will_paginate @active_employees, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'active_page', class: 'itemtags' %>
+		</div>
+	</th>
+</tr>
+</tfoot>
+</table>
 <% else %>
 <p>There are no current active employees. They should show the value of Name, Phone, Currently Assigned, and their Role.</p>
 <% end %>

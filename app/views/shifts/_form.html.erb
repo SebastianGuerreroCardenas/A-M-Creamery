@@ -1,72 +1,66 @@
 <%= form_for @shift do |f| %>
 <%= hidden_field_tag "shift[job_ids][]", nil%>
-  <% if @shift.errors.any? %>
-      <div id="error_explanation" class="ui red message">
-          <i class="close icon"></i>
-          <div class="header">
-              <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this Shift from being saved:</h2>
-          </div>
-          <ul class="list">
-              <% @shift.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-          </ul>
-      </div>
-  <% end %>
-  <% if current_user.employee.role == "admin"%>
-  <div class="fields">
-      <div class="required eight wide field">
-              <%= f.label :assignment_id %>
-              <%= f.select :assignment_id, get_assignment_options, prompt: "Select ..." %>  
-      </div>
+<% if @shift.errors.any? %>
+<div id="error_explanation" class="ui red message">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this Shift from being saved:</h2>
   </div>
-  <%else %>
-
-  <div class="fields">
-      <div class="required eight wide field">
-              <%= f.label :assignment_id %>
-              <%= f.select :assignment_id, get_assignment_options_manager(current_user.employee.current_assignment.store_id), prompt: "Select ..." %>  
-      </div>
+  <ul class="list">
+    <% @shift.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<% if current_user.employee.role == "admin"%>
+<div class="fields">
+  <div class="required eight wide field">
+    <%= f.label :assignment_id %>
+    <%= f.select :assignment_id, get_assignment_options, prompt: "Select ..." %>
   </div>
-
-  <% end %>
-
-  <h4 class="ui dividing header">Times</h4>
+</div>
+<%else %>
+<div class="fields">
+  <div class="required eight wide field">
+    <%= f.label :assignment_id %>
+    <%= f.select :assignment_id, get_assignment_options_manager(current_user.employee.current_assignment.store_id), prompt: "Select ..." %>
+  </div>
+</div>
+<% end %>
+<h4 class="ui dividing header">Times</h4>
+<div class="required field">
+  <%= f.label :date %>
+  <div class="fields">
+    <%= f.date_field :date, order: [:month, :day, :year], start_year: Date.today.year , end_year: 20.year.from_now.year %>
+  </div>
+</div>
+<div class="fields">
   <div class="required field">
-      <%= f.label :date %>
-      <div class="fields">
-          <%= f.date_field :date, order: [:month, :day, :year], start_year: Date.today.year , end_year: 20.year.from_now.year %>
-      </div>
+    <%= f.label :start_time %>
+    <%= f.time_field :start_time, class: "timepicker" %>
   </div>
-  <div class="fields">
-      <div class="required field">
-        <%= f.label :start_time %>
-        <%= f.time_field :start_time, class: "timepicker" %>
-      </div>
-      <div class="required field">
-          <%= f.label :end_time %>
-          <%= f.time_field :end_time, class: "timepicker"%>
-      </div>
+  <div class="required field">
+    <%= f.label :end_time %>
+    <%= f.time_field :end_time, class: "timepicker"%>
   </div>
-  <h4 class="ui dividing header">Notes</h4>
-  <div class="fields">
-      <div class="required field">
-          <%= f.text_field :notes %>
-      </div>
+</div>
+<h4 class="ui dividing header">Notes</h4>
+<div class="fields">
+  <div class="required field">
+    <%= f.text_field :notes %>
   </div>
+</div>
 <h4 class="ui dividing header">Jobs</h4>
 
-  
-    <% Job.active.alphabetical.all.each do |job| %>
-      <%= check_box_tag "shift[job_ids][]",job.id,@shift.jobs.include?(job) %>
-      <%= job.name %>
-      <br />
-    <% end %>
-  
+<% Job.active.alphabetical.all.each do |job| %>
+<%= check_box_tag "shift[job_ids][]",job.id,@shift.jobs.include?(job) %>
+<%= job.name %>
+<br />
+<% end %>
 
-
-  <div>
-      <p><%= f.submit class: 'ui basic blue button' %></p>
-  </div>
-  <% end %>
+<div>
+  <p><%= f.submit class: 'ui basic blue button' %></p>
+</div>
+<% end %>
 <br/>

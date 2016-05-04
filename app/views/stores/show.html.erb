@@ -6,31 +6,29 @@
 		<br/>
 		<b>Address:&nbsp;&nbsp;</b>
 		<br/>
-		  <%= @store.street %><br/>
-		  <%= @store.city %>, <%= @store.state %> <%= @store.zip %><br/><br/>
-
-		<b>Active: </b> 
-
+		<%= @store.street %><br/>
+		<%= @store.city %>, <%= @store.state %> <%= @store.zip %><br/><br/>
+		<b>Active: </b>
 		<% if @store.active? %>
-		 Yes
+		Yes
 		<% else %>
-		 No
+		No
 		<% end %>
 		<br/>
 		<br/>
 		<% if can? :update, Store %>
 		<%= link_to "<button class='ui basic green button'>
-	  <i class='icon edit'></i>
-	  Edit Store
-	</button>".html_safe, edit_store_path(@store)  %>
-	<% end %>
-	<br>
-	<br>
-	<h1>Flavors: </h1> 
-	<% for flavor in @flavors%>
-	<%= link_to flavor.name,  flavor_path(flavor), class: "ui pink label" %>
-	<% end %>
-	<br>
+		<i class='icon edit'></i>
+		Edit Store
+		</button>".html_safe, edit_store_path(@store)  %>
+		<% end %>
+		<br>
+		<br>
+		<h1>Flavors: </h1>
+		<% for flavor in @flavors%>
+		<%= link_to flavor.name,  flavor_path(flavor), class: "ui pink label" %>
+		<% end %>
+		<br>
 	</div>
 	<br/>
 	<% if logged_in? and current_user.employee.role == "admin"%>
@@ -43,31 +41,30 @@
 				<th>Role</th>
 			</thead>
 			<tbody>
-			<% for assignment in @current_assignments%>
-			<tr>
-				<td>
-					<%= link_to assignment.employee.name, employee_path(assignment.employee) %>
-				</td>
-				<td>
-					<%= assignment.employee.role%>
-				</td>
-			</tr>
-			<% end %>
+				<% for assignment in @current_assignments%>
+				<tr>
+					<td>
+						<%= link_to assignment.employee.name, employee_path(assignment.employee) %>
+					</td>
+					<td>
+						<%= assignment.employee.role%>
+					</td>
+				</tr>
+				<% end %>
 			</tbody>
 			<tfoot>
-
 			<tr><th colspan="6">
-			<div class="ui right aligned">
-			<%= will_paginate @current_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
-			</div>
+				<div class="ui right aligned">
+					<%= will_paginate @current_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
+				</div>
 			</th>
-			</tr>
-			</tfoot>
-		</table>
-	</div>
-	<% end %>
-	<div>
-		<%= image_tag @store.create_map_link(), class: "ui medium bordered image" %>
-	</div>
+		</tr>
+		</tfoot>
+	</table>
+</div>
+<% end %>
+<div>
+	<%= image_tag @store.create_map_link(), class: "ui medium bordered image" %>
+</div>
 </div>
 <br/><br/>

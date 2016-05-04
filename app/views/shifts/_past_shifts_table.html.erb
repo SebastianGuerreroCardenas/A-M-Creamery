@@ -1,21 +1,21 @@
 <%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
 <% if not @past_shifts.empty? %>
-	<table class="ui very basic collapsing celled table">
-		<thead>
-			<th></th>
-			<th>Assignment</th>
-			<th>Store</th>
-			<th>Employee</th>
-			<th>Date</th>
-			<th>Start Time</th>
-			<th>End Time</th>
-			<th>Notes</th>
-			<% if can? :update, Shift %>
-			<th></th>
-			<th></th>
-			<% end %>
-		</thead>
-		<tbody>
+<table class="ui very basic collapsing celled table">
+	<thead>
+		<th></th>
+		<th>Assignment</th>
+		<th>Store</th>
+		<th>Employee</th>
+		<th>Date</th>
+		<th>Start Time</th>
+		<th>End Time</th>
+		<th>Notes</th>
+		<% if can? :update, Shift %>
+		<th></th>
+		<th></th>
+		<% end %>
+	</thead>
+	<tbody>
 		<% for shift in @past_shifts %>
 		<tr>
 			<td>
@@ -52,17 +52,16 @@
 			<% end %>
 		</tr>
 		<% end %>
-		</tbody>
-		<tfoot>
-
-		<tr><th colspan="6">
+	</tbody>
+	<tfoot>
+	<tr><th colspan="6">
 		<div class="ui right aligned">
-		<%= will_paginate @past_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'past_page', class: 'itemtags' %>
+			<%= will_paginate @past_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'past_page', class: 'itemtags' %>
 		</div>
-		</th>
-		</tr>
-		</tfoot>
-	</table>
+	</th>
+</tr>
+</tfoot>
+</table>
 <% else %>
 <p>There are no past shifts..</p>
 <% end %>

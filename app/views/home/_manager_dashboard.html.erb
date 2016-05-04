@@ -1,21 +1,19 @@
 <div class="ui grid">
   <div class="ten wide column">
-
-  	<div class="ui grid">
-	  	<div class="eight wide column">
-	  	<%= render 'store_flavor_stats' %>
-	  	</div>
-	  	<div class="eight wide column">
-	  	<%= render 'quick_access_buttons' %>
-	  	</div>
-
-  	</div>
-  	<%= render 'manager_stats' %>
-  	<%= render 'upcoming_shifts_table_start_end' %>
-  	<%= render 'upcoming_shifts_table_of_employees' %>
+    <div class="ui grid">
+      <div class="eight wide column">
+        <%= render 'store_flavor_stats' %>
+      </div>
+      <div class="eight wide column">
+        <%= render 'quick_access_buttons' %>
+      </div>
+    </div>
+    <%= render 'manager_stats' %>
+    <%= render 'upcoming_shifts_table_start_end' %>
+    <%= render 'upcoming_shifts_table_of_employees' %>
   </div>
   <div class="four wide column" id="incomplete_shifts_column">
-  	<%= render 'incomplete_shifts_stats' %>
+    <%= render 'incomplete_shifts_stats' %>
   </div>
   <div class="two wide column"></div>
 </div>

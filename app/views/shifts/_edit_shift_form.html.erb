@@ -1,31 +1,26 @@
 <%= form_for @shift, remote: true do |f| %>
 <%= hidden_field_tag "shift[job_ids][]", nil%>
-  <% if @shift.errors.any? %>
-      <div id="error_explanation" class="ui red message">
-          <i class="close icon"></i>
-          <div class="header">
-              <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this Shift from being saved:</h2>
-          </div>
-          <ul class="list">
-              <% @shift.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-          </ul>
-      </div>
-  <% end %>
-
-<h4 class="ui dividing header">Jobs</h4>
-
-  
-    <% Job.active.alphabetical.all.each do |job| %>
-      <%= check_box_tag "shift[job_ids][]",job.id,@shift.jobs.include?(job) %>
-      <%= job.name %>
-      <br />
-    <% end %>
-  
-
-  <div>
-      <p><%= f.submit nil, class: 'ui basic blue button' %></p>
+<% if @shift.errors.any? %>
+<div id="error_explanation" class="ui red message">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this Shift from being saved:</h2>
   </div>
-  <% end %>
+  <ul class="list">
+    <% @shift.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<h4 class="ui dividing header">Jobs</h4>
+<% Job.active.alphabetical.all.each do |job| %>
+<%= check_box_tag "shift[job_ids][]",job.id,@shift.jobs.include?(job) %>
+<%= job.name %>
+<br />
+<% end %>
+<div>
+  <p><%= f.submit nil, class: 'ui basic blue button' %></p>
+</div>
+<% end %>
 <br/>

@@ -1,12 +1,12 @@
 <% if not @inactive_users.empty? %>
-	<table class="ui very basic collapsing celled table">
-		<thead>
-			<th>User Name</th>
-			<th>Email</th>
-			<th></th>
-			<th></th>
-		</thead>
-		<tbody>
+<table class="ui very basic collapsing celled table">
+	<thead>
+		<th>User Name</th>
+		<th>Email</th>
+		<th></th>
+		<th></th>
+	</thead>
+	<tbody>
 		<% for user in @inactive_users %>
 		<tr>
 			<td>
@@ -23,17 +23,16 @@
 			</td>
 		</tr>
 		<% end %>
-		</tbody>
-		<tfoot>
-
-		<tr><th colspan="6">
+	</tbody>
+	<tfoot>
+	<tr><th colspan="6">
 		<div class="ui right aligned">
-		<%= will_paginate @inactive_users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'inactive_page', class: 'itemtags' %>
+			<%= will_paginate @inactive_users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'inactive_page', class: 'itemtags' %>
 		</div>
-		</th>
-		</tr>
-		</tfoot>
-	</table>
+	</th>
+</tr>
+</tfoot>
+</table>
 <% else %>
 <p>There are no current inactive Users. They should show the value of User email.</p>
 <% end %>

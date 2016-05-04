@@ -1,31 +1,31 @@
 <%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-      <div id="error_explanation" class="ui red message">
-          <i class="close icon"></i>
-          <div class="header">
-              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this User from being saved:</h2>
-          </div>
-          <ul class="list">
-              <% @user.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-          </ul>
-      </div>
-  <% end %>
-  <div class="fields">
-      <div class="required field">
-          <%= f.label :email %>
-          <%= f.text_field :email %>
-      </div>
+<% if @user.errors.any? %>
+<div id="error_explanation" class="ui red message">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this User from being saved:</h2>
   </div>
-  <div class="fields">
-      <div class="required five wide field">
-        <%= f.label :employee_id %>
-        <%= f.select :employee_id, get_employees_without_users_options, prompt: "Select ..." %>
-    </div>
+  <ul class="list">
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="fields">
+  <div class="required field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
   </div>
-  <div>
-      <p><%= f.submit class: 'ui basic blue button' %></p>
+</div>
+<div class="fields">
+  <div class="required five wide field">
+    <%= f.label :employee_id %>
+    <%= f.select :employee_id, get_employees_without_users_options, prompt: "Select ..." %>
   </div>
-  <% end %>
+</div>
+<div>
+  <p><%= f.submit class: 'ui basic blue button' %></p>
+</div>
+<% end %>
 <br/>

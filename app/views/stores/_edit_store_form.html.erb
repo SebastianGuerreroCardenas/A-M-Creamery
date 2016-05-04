@@ -1,31 +1,26 @@
 <%= form_for @store, remote: true do |f| %>
 <%= hidden_field_tag "store[flavor_ids][]", nil%>
-  <% if @store.errors.any? %>
-      <div id="error_explanation" class="ui red message">
-          <i class="close icon"></i>
-          <div class="header">
-              <h2><%= pluralize(@store.errors.count, "error") %> prohibited this Store from being saved:</h2>
-          </div>
-          <ul class="list">
-              <% @store.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-          </ul>
-      </div>
-  <% end %>
-
+<% if @store.errors.any? %>
+<div id="error_explanation" class="ui red message">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2><%= pluralize(@store.errors.count, "error") %> prohibited this Store from being saved:</h2>
+  </div>
+  <ul class="list">
+    <% @store.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 <h4 class="ui dividing header">Flavors</h4>
 
-  
-    <% Flavor.active.alphabetical.all.each do |flavor| %>
-      <%= check_box_tag "store[flavor_ids][]",flavor.id,@store.flavors.include?(flavor) %>
-      <%= flavor.name %>
-      <br />
-    <% end %>
-
-
-  <div>
-      <p><%= f.submit nil, class: 'ui basic blue button' %></p>
-  </div>
-  <% end %>
-
+<% Flavor.active.alphabetical.all.each do |flavor| %>
+<%= check_box_tag "store[flavor_ids][]",flavor.id,@store.flavors.include?(flavor) %>
+<%= flavor.name %>
+<br />
+<% end %>
+<div>
+  <p><%= f.submit nil, class: 'ui basic blue button' %></p>
+</div>
+<% end %>

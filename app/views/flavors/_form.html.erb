@@ -1,25 +1,25 @@
 <%= form_for @flavor do |f| %>
-  <% if @flavor.errors.any? %>
-      <div id="error_explanation" class="ui red message">
-          <i class="close icon"></i>
-          <div class="header">
-              <h2><%= pluralize(@flavor.errors.count, "error") %> prohibited this Flavor from being saved:</h2>
-          </div>
-          <ul class="list">
-              <% @flavor.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-          </ul>
-      </div>
-  <% end %>
-  <div class="fields">
-      <div class="required field">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-      </div>
+<% if @flavor.errors.any? %>
+<div id="error_explanation" class="ui red message">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2><%= pluralize(@flavor.errors.count, "error") %> prohibited this Flavor from being saved:</h2>
   </div>
-  <div>
-      <p><%= f.submit class: 'ui basic blue button' %></p>
+  <ul class="list">
+    <% @flavor.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="fields">
+  <div class="required field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
-  <% end %>
+</div>
+<div>
+  <p><%= f.submit class: 'ui basic blue button' %></p>
+</div>
+<% end %>
 <br/>

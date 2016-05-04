@@ -2,50 +2,34 @@ $('#adding_new_shift_button').hide();
 $('#adding_new_shift').append('<%= j render("shifts/new_shift_form")%>');
 // adds the item class to all a tags, that have itemtags
 $('div.itemtags a').addClass('item');
-
-
-
 // adds a 'ui form' class to all the forms
 $('form').addClass('ui form');
-
 // for all selects tags adds a 'ui fluid search dropdown' class
 $('select').addClass('ui fluid search dropdown');
-
 // triggers dropdowns to work
 $('select.dropdown')
-  .dropdown()
+.dropdown()
 ;
-
-// triggers the checkbox 
+// triggers the checkbox
 $('.ui.checkbox')
-  .checkbox()
+.checkbox()
 ;
-
 // when you click on the x of the flash messages it delets them with a fade
 $('.message .close')
-  .on('click', function() {
-    $(this)
-      .closest('.message')
-      .transition('fade')
-    ;
-  })
+.on('click', function() {
+$(this)
+.closest('.message')
+.transition('fade')
 ;
-
-
+})
+;
 $('.ui.dropdown')
-  .dropdown({
-    on: 'hover'
-  })
+.dropdown({
+on: 'hover'
+})
 ;
-
 $('#datepicker').pickadate();
 $('.timepicker').pickatime();
-
-
 $('.menu .item')
-  .tab()
+.tab()
 ;
-//enables the side par for personal view
-// $('.ui.labeled.icon.sidebar')
-//   .sidebar('toggle')
-// ;

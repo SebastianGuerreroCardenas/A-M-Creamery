@@ -3,38 +3,32 @@
     <%= logged_in?.employee.name %>
     <i class="dropdown icon"></i>
     <div class="menu">
+      <%= link_to 'View My Info', employee_path(logged_in?.employee.id), class: "item" %>
       <%= link_to 'Edit Settings', edit_employee_path(logged_in?.employee.id), class: "item" %>
       <%= link_to "Logout", logout_path, class: "item" %>
     </div>
   </div>
-
 </div>
 <div class="ui left thin visible vertical inverted sidebar labeled icon menu">
   <div class="item">
-  <%= link_to (image_tag 'logo.png', class: 'ui fluid image small'),home_path %>
-  <br>
+    <%= link_to (image_tag 'logo.png', class: 'ui fluid image small'),home_path %>
+    <br>
     <i class="user icon"></i>
     <h3>Hello <%= logged_in?.employee.first_name %>!</h3>
-     
-  <br>
+    
+    <br>
   </div>
-
-   <%= link_to '<i class="dashboard icon"></i> Dashboard'.html_safe, dashboard_path, class: (params[:controller] == 'dashboard' ? "item active" : "item" ) %>
-   <%= link_to '<i class="food icon"></i> Stores'.html_safe, stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
-   <%= link_to '<i class="skyatlas icon"></i> Flavors'.html_safe, flavors_path, class:(params[:controller] == 'flavors' ? "item active" : "item" ) %>
-   
-   <% if can? :read, Employee %>
-    <%= link_to '<i class="users icon"></i> Employees'.html_safe, employees_path, class:(params[:controller] == 'employees' ? "item active" : "item" )%>
+  <%= link_to '<i class="dashboard icon"></i> Dashboard'.html_safe, dashboard_path, class: (params[:controller] == 'dashboard' ? "item active" : "item" ) %>
+  <%= link_to '<i class="food icon"></i> Stores'.html_safe, stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
+  <%= link_to '<i class="skyatlas icon"></i> Flavors'.html_safe, flavors_path, class:(params[:controller] == 'flavors' ? "item active" : "item" ) %>
+  
+  <% if can? :read, Employee %>
+  <%= link_to '<i class="users icon"></i> Employees'.html_safe, employees_path, class:(params[:controller] == 'employees' ? "item active" : "item" )%>
   <% end %>
-
-
-   <%= link_to '<i class="suitcase outline icon"></i> Assignments'.html_safe, assignments_path, class:(params[:controller] == 'assignments' ? "item active" : "item" ) %>
-   <%= link_to '<i class="alarm outline icon"></i> Shifts'.html_safe, shifts_path, class:(params[:controller] == 'shifts' ? "item active" : "item" ) %>
-   <%= link_to '<i class="configure icon"></i> Jobs'.html_safe, jobs_path, class:(params[:controller] == 'jobs' ? "item active" : "item" ) %>
-
-   <% if can? :read, User %>
-   <%= link_to '<i class="database icon"></i> Users'.html_safe, users_path, class:(params[:controller] == 'users' ? "item active" : "item" ) %>
-   <% end %>
-
+  <%= link_to '<i class="suitcase outline icon"></i> Assignments'.html_safe, assignments_path, class:(params[:controller] == 'assignments' ? "item active" : "item" ) %>
+  <%= link_to '<i class="alarm outline icon"></i> Shifts'.html_safe, shifts_path, class:(params[:controller] == 'shifts' ? "item active" : "item" ) %>
+  <%= link_to '<i class="configure icon"></i> Jobs'.html_safe, jobs_path, class:(params[:controller] == 'jobs' ? "item active" : "item" ) %>
+  <% if can? :read, User %>
+  <%= link_to '<i class="database icon"></i> Users'.html_safe, users_path, class:(params[:controller] == 'users' ? "item active" : "item" ) %>
+  <% end %>
 </div>
-

@@ -4,22 +4,20 @@
 		<b>Name:</b> <%= @flavor.name %>
 		<br/>
 		<br/>
-
-		<b>Active: </b> 
-
+		<b>Active: </b>
 		<% if @flavor.active? %>
-		 Yes
+		Yes
 		<% else %>
-		 No
+		No
 		<% end %>
 		<br/>
 		<br/>
 		<% if can? :update, Flavor %>
-			<%= link_to "<button class='ui basic green button'>
-		  <i class='icon edit'></i>
-		  Edit Flavor
+		<%= link_to "<button class='ui basic green button'>
+		<i class='icon edit'></i>
+		Edit Flavor
 		</button>".html_safe, edit_flavor_path(@flavor)  %>
-	<% end %>
+		<% end %>
 	</div>
 	<br/>
 </div>

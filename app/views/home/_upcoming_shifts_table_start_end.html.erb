@@ -1,8 +1,8 @@
 <%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
 <div class="ui pink segment" id="upcoming_shifts_table_start_end_id">
-<h2>Your Shifts</h2>
-<br>
-<% if not @upcoming_shifts_for_employee.empty? %>
+	<h2>Your Shifts</h2>
+	<br>
+	<% if not @upcoming_shifts_for_employee.empty? %>
 	<table class="ui very basic collapsing celled table">
 		<thead>
 			<th></th>
@@ -15,51 +15,49 @@
 			<th></th>
 		</thead>
 		<tbody>
-		<% for shift in @upcoming_shifts_for_employee %>
-		<tr>
-			<td>
-				<%= link_to "view", shift_path(shift) %>
-			</td>
-			<td>
-				<%= shift.date.strftime("%m/%d/%y") %>
-			</td>
-			<td>
-				<%= shift.start_time.localtime.strftime("%I:%M %p") %>
-			</td>
-			<td>
-				<%= shift.end_time.localtime.strftime("%I:%M %p") %>
-			</td>
-			<td>
-				<%= shift.notes == nil ? "None" : shift.notes %>
-			</td>
-			<td>
-				<div class="ui labels">
-				<% for job in shift.jobs %>
-					<%= link_to job.name,  job_path(job), class: "ui olive label" %>
-				<% end%>
-				</div>
-			</td>
-			<td>
-				<%= link_to "Start Now" ,start_shift_path(shift), method: :post, remote: true, class: 'ui green button' %>
-			</td>
-			<td>
-				<%= link_to "End Now", end_shift_path(shift), method: :post, remote: true ,class: 'ui red button'%>
-			</td>
-		</tr>
-		<% end %>
+			<% for shift in @upcoming_shifts_for_employee %>
+			<tr>
+				<td>
+					<%= link_to "view", shift_path(shift) %>
+				</td>
+				<td>
+					<%= shift.date.strftime("%m/%d/%y") %>
+				</td>
+				<td>
+					<%= shift.start_time.localtime.strftime("%I:%M %p") %>
+				</td>
+				<td>
+					<%= shift.end_time.localtime.strftime("%I:%M %p") %>
+				</td>
+				<td>
+					<%= shift.notes == nil ? "None" : shift.notes %>
+				</td>
+				<td>
+					<div class="ui labels">
+						<% for job in shift.jobs %>
+						<%= link_to job.name,  job_path(job), class: "ui olive label" %>
+						<% end%>
+					</div>
+				</td>
+				<td>
+					<%= link_to "Start Now" ,start_shift_path(shift), method: :post, remote: true, class: 'ui green button' %>
+				</td>
+				<td>
+					<%= link_to "End Now", end_shift_path(shift), method: :post, remote: true ,class: 'ui red button'%>
+				</td>
+			</tr>
+			<% end %>
 		</tbody>
 		<tfoot>
-
 		<tr><th colspan="6">
-		<div class="ui right aligned">
-		<%= will_paginate @upcoming_shifts_for_employee, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'upcoming_shifts_for_employee', class: 'itemtags' %>
-		</div>
+			<div class="ui right aligned">
+				<%= will_paginate @upcoming_shifts_for_employee, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'upcoming_shifts_for_employee', class: 'itemtags' %>
+			</div>
 		</th>
-		</tr>
-		</tfoot>
-	</table>
+	</tr>
+	</tfoot>
+</table>
 <% else %>
 <p>There are no upcoming shifts..</p>
 <% end %>
-
 </div>

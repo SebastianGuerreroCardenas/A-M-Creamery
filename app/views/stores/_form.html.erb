@@ -1,63 +1,60 @@
 <%= form_for @store do |f| %>
 <%= hidden_field_tag "store[flavor_ids][]", nil%>
-  <% if @store.errors.any? %>
-      <div id="error_explanation" class="ui red message">
-          <i class="close icon"></i>
-          <div class="header">
-              <h2><%= pluralize(@store.errors.count, "error") %> prohibited this Store from being saved:</h2>
-          </div>
-          <ul class="list">
-              <% @store.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-          </ul>
-      </div>
-  <% end %>
-  <div class="fields">
-      <div class="required field">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-      </div>
+<% if @store.errors.any? %>
+<div id="error_explanation" class="ui red message">
+  <i class="close icon"></i>
+  <div class="header">
+    <h2><%= pluralize(@store.errors.count, "error") %> prohibited this Store from being saved:</h2>
   </div>
-  <h4 class="ui dividing header">Address</h4>
+  <ul class="list">
+    <% @store.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="fields">
   <div class="required field">
-      <%= f.label :street %>
-      <%= f.text_field :street %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
-  <div class="fields">
-      <div class="seven wide field">
-          <%= f.label :city %>
-          <%= f.text_field :city %>
-      </div>
-      <div class="five wide field">
-          <%= f.label :state %>
-          <%= f.select(:state, Store::STATES_LIST) %>
-      </div>
-      <div class="required five wide field">
-          <%= f.label :zip %>
-          <%= f.text_field :zip %>
-      </div>
+</div>
+<h4 class="ui dividing header">Address</h4>
+<div class="required field">
+  <%= f.label :street %>
+  <%= f.text_field :street %>
+</div>
+<div class="fields">
+  <div class="seven wide field">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
   </div>
-  <h4 class="ui dividing header">Contact</h4>
-  <div class="fields">
-      <div class="required field">
-          <%= f.label :phone %>
-          <%= f.text_field :phone %>
-      </div>
+  <div class="five wide field">
+    <%= f.label :state %>
+    <%= f.select(:state, Store::STATES_LIST) %>
   </div>
+  <div class="required five wide field">
+    <%= f.label :zip %>
+    <%= f.text_field :zip %>
+  </div>
+</div>
+<h4 class="ui dividing header">Contact</h4>
+<div class="fields">
+  <div class="required field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+</div>
 <h4 class="ui dividing header">Flavors</h4>
 
-  
-    <% Flavor.active.alphabetical.all.each do |flavor| %>
-      <%= check_box_tag "store[flavor_ids][]",flavor.id,@store.flavors.include?(flavor) %>
-      <%= flavor.name %>
-      <br />
-    <% end %>
-  
+<% Flavor.active.alphabetical.all.each do |flavor| %>
+<%= check_box_tag "store[flavor_ids][]",flavor.id,@store.flavors.include?(flavor) %>
+<%= flavor.name %>
+<br />
+<% end %>
 
-
-  <div>
-      <p><%= f.submit class: 'ui basic blue button' %></p>
-  </div>
-  <% end %>
+<div>
+  <p><%= f.submit class: 'ui basic blue button' %></p>
+</div>
+<% end %>
 <br/>

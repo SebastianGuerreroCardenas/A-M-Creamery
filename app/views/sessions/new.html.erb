@@ -1,33 +1,31 @@
 <%= javascript_include_tag "application" %>
 <script type="text/javascript">
-
 $(document).ready(function () {
-  $( "div" ).remove( "#header" );
+$( "div" ).remove( "#header" );
 });
 </script>
-
 <style type="text/css">
-    body {
-      background-image: url("<%= image_path 'background_login.png'%>");
-    }
-    body > .grid {
-      height: 100%;
-    }
-    .image {
-      margin-top: -100px;
-    }
-    .column {
-      max-width: 450px;
-    }
+body {
+background-image: url("<%= image_path 'background_login.png'%>");
+}
+body > .grid {
+height: 100%;
+}
+.image {
+margin-top: -100px;
+}
+.column {
+max-width: 450px;
+}
 </style>
 <br>
 <br>
 <div class="ui middle aligned center aligned grid backgroun_img">
   <div class="column">
     <h2 class="ui pink image header">
-      <div class="content">
-        Employee Log In
-      </div>
+    <div class="content">
+      Employee Log In
+    </div>
     </h2>
     <%= form_tag sessions_path,  class: "ui large form" do%>
     <div class="ui stacked segment">
@@ -35,10 +33,10 @@ $(document).ready(function () {
         <%= label_tag :email %>
         <div class="controls">
           <div class="field">
-          <div class="ui left icon input">
-          <i class="user icon"></i>
-            <%= text_field_tag :email, params[:email], placeholder: "E-mail address" %>
-          </div>
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <%= text_field_tag :email, params[:email], placeholder: "E-mail address" %>
+            </div>
           </div>
         </div>
       </div>
@@ -46,18 +44,17 @@ $(document).ready(function () {
       <div class="control-group">
         <%= label_tag :password %>
         <div class="controls">
-        <div class="field">
-        <div class="ui left icon input">
-        <i class="lock icon"></i>
-          <%= password_field_tag :password,"" ,placeholder: "Password" %>
-        </div>
-        </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <%= password_field_tag :password,"" ,placeholder: "Password" %>
+            </div>
+          </div>
         </div>
       </div>
       <br>
       <div class="actions"><%= submit_tag "Log In" , class: "ui fluid large pink submit button" %></div>
     </div>
     <% end %>
-
   </div>
 </div>

@@ -6,24 +6,22 @@
 		<br/>
 		<b>Description:&nbsp;&nbsp;</b>
 		<br/>
-		  <%= @job.description %><br/>
-		  <br/><br/>
-
-		<b>Active: </b> 
-
+		<%= @job.description %><br/>
+		<br/><br/>
+		<b>Active: </b>
 		<% if @job.active? %>
-		 Yes
+		Yes
 		<% else %>
-		 No
+		No
 		<% end %>
 		<br/>
 		<br/>
 		<% if can? :update, Job %>
 		<%= link_to "<button class='ui basic green button'>
-	  <i class='icon edit'></i>
-	  Edit Job
-	</button>".html_safe, edit_job_path(@job)  %>
-	<% end %>
+		<i class='icon edit'></i>
+		Edit Job
+		</button>".html_safe, edit_job_path(@job)  %>
+		<% end %>
 	</div>
 	<br/>
 </div>

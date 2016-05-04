@@ -1,38 +1,37 @@
 <div class="ui pink segment">
-<h2><%= @store.name %> Statistics</h2>
-<div class="ui small statistics">
-	<div class="pink statistic">
-    <div class="value">
-      <%= @active_employees.size %>
-    </div>
-    <div class="label">
-      Employees
-    </div>
-   </div>
-    <div class="pink statistic">
-	    <div class="value">
-	      <%= @upcoming_shifts.size %>
-	    </div>
-	    <div class="label">
-	      Upcoming Shifts
-	    </div>
-  </div>
-  <div class="pink statistic">
-	    <div class="value">
-	      <%= @upcoming_shifts.size %>
-	    </div>
-	    <div class="label">
-	      Completed Shifts
-	    </div>
-  </div>
-  <div class="pink statistic">
-	    <div class="value">
-	      <%= @incomplete_shifts.size %>
-	    </div>
-	    <div class="label">
-	      Incompleted Shifts
-	    </div>
-  </div>
+	<h2><%= @store.name %> Statistics</h2>
+	<div class="ui small statistics">
+		<div class="pink statistic">
+			<div class="value">
+				<%= @active_employees.size %>
+			</div>
+			<div class="label">
+				Employees
+			</div>
+		</div>
+		<div class="pink statistic">
+			<div class="value">
+				<%= @upcoming_shifts.size %>
+			</div>
+			<div class="label">
+				Upcoming Shifts
+			</div>
+		</div>
+		<div class="pink statistic">
+			<div class="value">
+				<%= @upcoming_shifts.size %>
+			</div>
+			<div class="label">
+				Completed Shifts
+			</div>
+		</div>
+		<div class="pink statistic">
+			<div class="value">
+				<%= @incomplete_shifts.size %>
+			</div>
+			<div class="label">
+				Incompleted Shifts
+			</div>
+		</div>
+	</div>
 </div>
-</div>
- 

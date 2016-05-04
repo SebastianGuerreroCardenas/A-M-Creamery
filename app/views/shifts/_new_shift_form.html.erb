@@ -1,56 +1,52 @@
 <div class="ui pink segment">
-<%= form_for @shift, remote: true do |f| %>
+  <%= form_for @shift, remote: true do |f| %>
   <% if @shift.errors.any? %>
-      <div id="error_explanation" class="ui red message">
-          <i class="close icon"></i>
-          <div class="header">
-              <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this Shift from being saved:</h2>
-          </div>
-          <ul class="list">
-              <% @shift.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-          </ul>
-      </div>
-  <% end %>
-
-  <div class="fields">
-      <div class="required eight wide field">
-              <%= f.label :assignment_id %>
-              <%= f.select :assignment_id,get_assignment_for_adding_shift(params[:employee_id])%> 
-      </div>
+  <div id="error_explanation" class="ui red message">
+    <i class="close icon"></i>
+    <div class="header">
+      <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this Shift from being saved:</h2>
+    </div>
+    <ul class="list">
+      <% @shift.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
-
+  <% end %>
+  <div class="fields">
+    <div class="required eight wide field">
+      <%= f.label :assignment_id %>
+      <%= f.select :assignment_id,get_assignment_for_adding_shift(params[:employee_id])%>
+    </div>
+  </div>
   <h4 class="ui dividing header">Times</h4>
   <div class="required field">
-      <%= f.label :date %>
-      <div class="fields">
-          <%= f.date_field :date, order: [:month, :day, :year], start_year: Date.today.year , end_year: 20.year.from_now.year %>
-      </div>
+    <%= f.label :date %>
+    <div class="fields">
+      <%= f.date_field :date, order: [:month, :day, :year], start_year: Date.today.year , end_year: 20.year.from_now.year %>
+    </div>
   </div>
   <div class="fields">
-      <div class="required field">
-        <%= f.label :start_time %>
-        <%= f.time_field :start_time, class: "timepicker" %>
-      </div>
-      <div class="required field">
-          <%= f.label :end_time %>
-          <%= f.time_field :end_time, class: "timepicker"%>
-      </div>
+    <div class="required field">
+      <%= f.label :start_time %>
+      <%= f.time_field :start_time, class: "timepicker" %>
+    </div>
+    <div class="required field">
+      <%= f.label :end_time %>
+      <%= f.time_field :end_time, class: "timepicker"%>
+    </div>
   </div>
   <h4 class="ui dividing header">Notes</h4>
   <div class="fields">
-      <div class="required field">
-          <%= f.text_field :notes %>
-      </div>
+    <div class="required field">
+      <%= f.text_field :notes %>
+    </div>
   </div>
   
-
-
   <div>
-      <p><%= f.submit nil ,class: 'ui basic blue button' %></p>
-      <%= link_to 'Cancel', employee_path(params[:employee_id]), class: 'ui red button' %>
+    <p><%= f.submit nil ,class: 'ui basic blue button' %></p>
+    <%= link_to 'Cancel', employee_path(params[:employee_id]), class: 'ui red button' %>
   </div>
   <% end %>
-<br/>
+  <br/>
 </div>

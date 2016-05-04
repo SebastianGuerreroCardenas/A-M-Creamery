@@ -60,28 +60,26 @@
     </div>
 </div>
 <% end %>
-    <h4 class="ui dividing header">User Info.</h4>
-    <%= f.fields_for :user, :wrapper => false do |user_form| %>
-    <div class="field">
-        <div class="required field">
-            <%= f.label :email %>
-            <%= user_form.text_field :email %>
-        </div>
+<h4 class="ui dividing header">User Info.</h4>
+<%= f.fields_for :user, :wrapper => false do |user_form| %>
+<div class="field">
+    <div class="required field">
+        <%= f.label :email %>
+        <%= user_form.text_field :email %>
     </div>
-
-    <div class="fields">
-        <div class="required field">
-            <%= f.label :password %>
-            <%= user_form.password_field :password %>
-        </div>
-        <div class="required field">
-            <%= f.label :password_confirmation %>
-            <%= user_form.password_field :password_confirmation %>
-        </div>
+</div>
+<div class="fields">
+    <div class="required field">
+        <%= f.label :password %>
+        <%= user_form.password_field :password %>
     </div>
-    <% end %>
-    <br>
-    <p><%= f.submit class: 'ui basic blue button' %></p>
-
+    <div class="required field">
+        <%= f.label :password_confirmation %>
+        <%= user_form.password_field :password_confirmation %>
+    </div>
+</div>
+<% end %>
+<br>
+<p><%= f.submit class: 'ui basic blue button' %></p>
 <% end %>
 <br/>

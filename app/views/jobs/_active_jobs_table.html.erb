@@ -1,14 +1,14 @@
 <% if not @active_jobs.empty? %>
-	<table class="ui very basic collapsing celled table">
-		<thead>
-			<th>Job Name</th>
-			<th>Description</th>
-			<% if can? :update, Employee %>
-			<th></th>
-			<th></th>
-			<% end %>
-		</thead>
-		<tbody>
+<table class="ui very basic collapsing celled table">
+	<thead>
+		<th>Job Name</th>
+		<th>Description</th>
+		<% if can? :update, Employee %>
+		<th></th>
+		<th></th>
+		<% end %>
+	</thead>
+	<tbody>
 		<% for job in @active_jobs %>
 		<tr>
 			<td>
@@ -27,17 +27,16 @@
 			<% end %>
 		</tr>
 		<% end %>
-		</tbody>
-		<tfoot>
-
-		<tr><th colspan="6">
+	</tbody>
+	<tfoot>
+	<tr><th colspan="6">
 		<div class="ui right aligned">
-		<%= will_paginate @active_jobs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'active_page', class: 'itemtags' %>
+			<%= will_paginate @active_jobs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'active_page', class: 'itemtags' %>
 		</div>
-		</th>
-		</tr>
-		</tfoot>
-	</table>
+	</th>
+</tr>
+</tfoot>
+</table>
 <% else %>
 <p>There are no current active jobs. They should show the value of Job Name and Job Description.</p>
 <% end %>

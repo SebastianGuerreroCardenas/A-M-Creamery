@@ -1,7 +1,6 @@
 <div class="ui grid">
-	<div class="eight wide column">	
+	<div class="eight wide column">
 		<h1>Employee Details</h1>
-
 		<b>Name:</b> <%= @employee.name %>
 		<br/>
 		<br/>
@@ -11,46 +10,46 @@
 		<b>Date of Birth:</b> <%= @employee.date_of_birth.strftime("%m/%d/%y") %>
 		<br/>
 		<br/>
+		<% if current_user.employee.role == "admin"%>
 		<b>SSN:</b> <%= @employee.ssn %>
 		<br/>
 		<br/>
+		<% end %>
 		<b>Role:</b> <%= @employee.role.titleize %>
 		<br/>
 		<br/>
-		<b>Active: </b> 
-
+		<% if current_user.employee.role == "admin"%>
+		<b>Active: </b>
 		<% if @employee.active? %>
-		 Yes
+		Yes
 		<% else %>
-		 No
+		No
 		<% end %>
 		<br/>
 		<br/>
-		<% if can? :update, Employee %>
+		<% end %>
+		<% if current_user.employee.role == "admin" %>
 		<%= link_to "<button class='ui basic green button'>
-	  <i class='icon edit'></i>
-	  Edit Employee
-	</button>".html_safe, edit_employee_path(@employee)  %>
-
-	<% end %>
-
-
-	<% if can? :update, Shift %>
-	<div id="adding_new_shift">
- 	</div>
- 	<div id="adding_new_shift_button">
- 		<%= render 'shifts/new_shift_button' %>
- 	</div>
-	<% end %>
+		<i class='icon edit'></i>
+		Edit Employee
+		</button>".html_safe, edit_employee_path(@employee)  %>
+		<% end %>
+		<br/>
+		<% if can? :update, Shift %>
+		<div id="adding_new_shift">
+		</div>
+		<div id="adding_new_shift_button">
+			<%= render 'shifts/new_shift_button' %>
+		</div>
+		<% end %>
 	</div>
 	<br/>
 	<% if current_user.employee.role == "admin"%>
 	<div class="six wide column">
 		<h1>Assignment History</h1>
 		<br/>
-			
-			<%= render 'assignment_history_table' %>
-
+		
+		<%= render 'assignment_history_table' %>
 		<br/><br/>
 	</div>
 	<% end %>

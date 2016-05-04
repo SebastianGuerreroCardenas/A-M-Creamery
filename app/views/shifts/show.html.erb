@@ -1,7 +1,6 @@
 <div class="ui grid">
-	<div class="eight wide column">	
+	<div class="eight wide column">
 		<h1>Employee Details</h1>
-
 		<b>Name:</b> <%= link_to @shift.employee.name, employee_path(@shift.employee) %>
 		<br/>
 		<br/>
@@ -23,11 +22,10 @@
 		<b>Notes:</b> <%= @shift.notes == nil ? "None" : @shift.notes %>
 		<br/>
 		<br/>
-
 		<%= link_to "<button class='ui basic green button'>
-	  <i class='icon edit'></i>
-	  Edit Shift
-	</button>".html_safe, edit_shift_path(@shift)  %>
+		<i class='icon edit'></i>
+		Edit Shift
+		</button>".html_safe, edit_shift_path(@shift)  %>
 	</div>
 	<br/>
 	<div class="six wide column">
@@ -40,30 +38,29 @@
 				<th>Description</th>
 			</thead>
 			<tbody>
-			<% for job in @jobs %>
-			<tr>
-				<td>
-					<%= link_to job.name, job_path(job) %>
-				</td>
-				<td>
-					<%= job.description %>
-				</td>
-			</tr>
-			<% end %>
+				<% for job in @jobs %>
+				<tr>
+					<td>
+						<%= link_to job.name, job_path(job) %>
+					</td>
+					<td>
+						<%= job.description %>
+					</td>
+				</tr>
+				<% end %>
 			</tbody>
 			<tfoot>
-
 			<tr><th colspan="6">
-			<div class="ui right aligned">
-			<%= will_paginate @jobs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
-			</div>
+				<div class="ui right aligned">
+					<%= will_paginate @jobs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'page', class: 'itemtags' %>
+				</div>
 			</th>
-			</tr>
-			</tfoot>
-		</table>
-		<% else %>
-		<p>There are no current jobs.</p>
-<% end %>
-		<br/><br/>
-	</div>
+		</tr>
+		</tfoot>
+	</table>
+	<% else %>
+	<p>There are no current jobs.</p>
+	<% end %>
+	<br/><br/>
+</div>
 </div>
