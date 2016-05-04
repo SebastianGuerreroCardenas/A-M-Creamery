@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 <style type="text/css">
     body {
-      background-color: #DADADA;
+      background-image: url("<%= image_path 'background_login.png'%>");
     }
     body > .grid {
       height: 100%;
@@ -26,7 +26,7 @@ $(document).ready(function () {
   <div class="column">
     <h2 class="ui pink image header">
       <div class="content">
-        Log-in to your account
+        Employee Log In
       </div>
     </h2>
     <%= form_tag sessions_path,  class: "ui large form" do%>

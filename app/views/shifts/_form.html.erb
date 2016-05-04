@@ -13,14 +13,23 @@
           </ul>
       </div>
   <% end %>
-
+  <% if current_user.employee.role == "admin"%>
   <div class="fields">
       <div class="required eight wide field">
               <%= f.label :assignment_id %>
               <%= f.select :assignment_id, get_assignment_options, prompt: "Select ..." %>  
       </div>
-
   </div>
+  <%else %>
+
+  <div class="fields">
+      <div class="required eight wide field">
+              <%= f.label :assignment_id %>
+              <%= f.select :assignment_id, get_assignment_options_manager(current_user.employee.current_assignment.store_id), prompt: "Select ..." %>  
+      </div>
+  </div>
+
+  <% end %>
 
   <h4 class="ui dividing header">Times</h4>
   <div class="required field">

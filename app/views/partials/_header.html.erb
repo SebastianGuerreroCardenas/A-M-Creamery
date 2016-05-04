@@ -4,8 +4,9 @@
   <div class="ui large secondary inverted pointing menu">
       
   	<div class="item">
-     <%= image_tag 'logo.png', class: 'ui fluid image small' %>
-     </div>
+    <%= link_to (image_tag 'logo.png', class: 'ui fluid image small'),home_path %>
+     
+    </div>
 
       <%= link_to 'Home', home_path, class: (params[:controller] == 'home' ? "item active" : "item" ) %>
       <%= link_to 'Stores', stores_path, class:(params[:controller] == 'stores' ? "item active" : "item" ) %>
