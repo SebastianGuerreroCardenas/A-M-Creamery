@@ -1,5 +1,4 @@
-<%= form_for @shift do |f| %>
-<%= hidden_field_tag "shift[job_ids][]", nil%>
+<%= form_for @shift, remote: true do |f| %>
   <% if @shift.errors.any? %>
       <div id="error_explanation" class="ui red message">
           <i class="close icon"></i>
@@ -17,8 +16,7 @@
   <div class="fields">
       <div class="required eight wide field">
               <%= f.label :assignment_id %>
-              <%= f.select :assignment_id, get_assignment_options, prompt: "Select ..." %>  
-      </div>
+              <%= f.select :assignment_id,get_assignment_for_adding_shift(params[:employee_id])%> 
 
   </div>
 
@@ -45,19 +43,11 @@
           <%= f.text_field :notes %>
       </div>
   </div>
-<h4 class="ui dividing header">Jobs</h4>
-
-  
-    <% Job.active.alphabetical.all.each do |job| %>
-      <%= check_box_tag "shift[job_ids][]",job.id,@shift.jobs.include?(job) %>
-      <%= job.name %>
-      <br />
-    <% end %>
   
 
 
   <div>
-      <p><%= f.submit class: 'ui basic blue button' %></p>
+      <p><%= f.submit nil ,class: 'ui basic blue button' %></p>
   </div>
   <% end %>
 <br/>

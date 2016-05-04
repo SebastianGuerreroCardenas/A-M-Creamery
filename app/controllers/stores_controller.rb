@@ -9,6 +9,7 @@ class StoresController < ApplicationController
   end
 
   def show
+    @store.get_store_coordinates
     @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
     @flavors = @store.flavors
   end
@@ -20,6 +21,7 @@ class StoresController < ApplicationController
   def edit
     respond_to do |format|
       format.js 
+      format.html {}
     end
   end
 

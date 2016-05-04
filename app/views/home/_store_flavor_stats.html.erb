@@ -1,0 +1,20 @@
+<div class="ui cards">
+  <div class="card">
+    <div class="content">
+      <div class="header"><%= @store.name %>Flavors</div>
+      <div class="description">
+      <div class="ui labels" id="store_flavorss">
+        <%= render 'updated_store_flavors' %>
+	    </div>
+	  <div id="flavors_list">
+	  	
+	  </div>
+      </div>
+    </div>
+    <div class="ui bottom attached button" id="editing_flavorss">
+      
+    <%= render 'edit_flavor_button' %>
+
+    </div>
+  </div>
+  </div>

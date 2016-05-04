@@ -31,6 +31,17 @@
 	  <i class='icon edit'></i>
 	  Edit Employee
 	</button>".html_safe, edit_employee_path(@employee)  %>
+
+	<% end %>
+
+
+	<% if can? :update, Shift %>
+	<div id="adding_new_shift">
+
+ 	</div>
+ 	<div id="adding_new_shift_button">
+ 		<%= render 'shifts/new_shift_button' %>
+ 	</div>
 	<% end %>
 	</div>
 	<br/>

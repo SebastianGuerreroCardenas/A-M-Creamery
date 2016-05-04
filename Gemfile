@@ -34,7 +34,7 @@ gem 'cancancan'
 gem 'simple_form'
 gem 'will_paginate'
 # gem 'foundation-rails', '5.5.3.2'
-
+gem 'pickadate-rails'
 gem "nested_form"
 
 gem 'less-rails-semantic_ui'

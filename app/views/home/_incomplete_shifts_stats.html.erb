@@ -1,0 +1,81 @@
+
+<%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
+<% if not @incomplete_shifts.empty? %>
+    <% for shift in @incomplete_shifts %>
+
+
+
+<div class="ui cards">
+  <div class="card">
+    <div class="content">
+      <div class="header">Shift for <%= shift.employee.name %>
+      </div>
+      <div class="description">
+      <p>Time:  <%= shift.start_time.strftime("%I:%M %p") %> - <%= shift.end_time.strftime("%I:%M %p") %></p>
+      <p>Notes: <%= shift.notes == nil ? "None" : shift.notes %></p>
+
+      <p>Id: <%= shift.id  %></p>
+      <p>P: <%= shift.persisted?  %></p>
+     
+    <div id="jobs_list">
+
+        <%= form_for shift, remote: true do |f| %>
+          <%= hidden_field_tag "shift[job_ids][]", nil%>
+            <% if shift.errors.any? %>
+                <div id="error_explanation" class="ui red message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                        <h2><%= pluralize(shift.errors.count, "error") %> prohibited this Shift from being saved:</h2>
+                    </div>
+                    <ul class="list">
+                        <% shift.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+          <h4 class="ui dividing header">Jobs</h4>
+
+            
+              <% Job.active.alphabetical.all.each do |job| %>
+                <%= check_box_tag "shift[job_ids][]",job.id,shift.jobs.include?(job) %>
+                <%= job.name %>
+                <br />
+              <% end %>
+            
+
+            <div>
+                <p><%= f.submit nil, class: 'ui basic blue button' %></p>
+            </div>
+            <% end %>
+          <br/>
+
+    </div>
+      </div>
+    </div>
+    <div class="ui bottom attached button" id="complete_shifts_button_id">
+      <%= link_to(edit_shift_path(shift), remote: true) do %>
+       Complete Shift
+    <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <% end %>
+<% else %>
+<p>There are no incomplete shifts.</p>
+<% end %>
+
+

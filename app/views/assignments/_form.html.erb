@@ -25,7 +25,7 @@
 <div class="required field">
     <%= f.label :start_date %>
     <div class="fields">
-        <%= f.date_select :start_date, order: [:month, :day, :year], start_year: 20.year.ago.year, end_year: Date.today.year %>
+        <%= f.date_field :start_date, order: [:month, :day, :year], start_year: 20.year.ago.year, end_year: Date.today.year, class: 'datepicker' %>
     </div>
 </div>
 <div class="fields">

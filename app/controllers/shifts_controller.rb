@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  before_action :set_shift, only: [:show,:edit, :update, :destroy]
+  before_action :set_shift, only: [:show,:edit, :update, :destroy,:start_shift,:end_shift]
   before_action :check_login
   authorize_resource
 
@@ -42,17 +42,49 @@ class ShiftsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js 
+      format.html {}
+    end
   end
 
   def create
-    
+    @shift = Shift.new(shift_params)
+    respond_to do |format|
+      if @shift.save
+        format.js
+         # redirect_to shifts_path, notice: "#{@shift.employee.proper_name} is working at #{@shift.store.name}."
+        format.html { redirect_to shifts_path(@shift), notice: "#{@shift.employee.proper_name} is working at #{@shift.store.name}." }
+
+      else
+        format.html {render action: 'new' }
+      end
+    end
   end
 
+  def start_shift
+    authorize! :update, @shift
+    @shift.start_now
+    @shift.save
+    redirect_to dashboard_path
+  end
+
+  def end_shift
+    authorize! :update, @shift
+    @shift.end_now
+    @shift.save
+    redirect_to dashboard_path
+  end
+
+
   def update
-    if @shift.update(shift_params)
-      redirect_to shifts_path, notice: "#{@shift.employee.proper_name}'s shift to #{@shift.store.name} is updated."
-    else
-      render action: 'edit'
+    respond_to do |format|
+      if @shift.update(shift_params)
+        format.js
+        format.html { redirect_to shifts_path, notice: "#{@shift.employee.proper_name}'s shift to #{@shift.store.name} is updated." }
+      else
+        format.html { render action: 'edit' }
+      end
     end
   end
 

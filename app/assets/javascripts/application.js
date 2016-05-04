@@ -15,6 +15,9 @@
 //= require jquery-ui
 //= require semantic_ui/semantic_ui
 //= require jquery_nested_form
+//= require pickadate/picker 
+//= require pickadate/picker.date 
+//= require pickadate/picker.time 
 //= require_tree .
 
 // adds the item class to all a tags, that have itemtags
@@ -64,7 +67,9 @@ $('.ui.dropdown')
   })
 ;
 
-$('#datepicker').datepicker();
+$('#datepicker').pickadate();
+$('.timepicker').pickatime();
+
 
 $('.menu .item')
   .tab()

@@ -1,26 +1,13 @@
-<%= render 'manager_stats' %>
 
 
-<div class="ui cards">
-  <div class="card">
-    <div class="content">
-      <div class="header"><%= @store.name %>Flavors</div>
-      <div class="description">
-      <div class="ui labels" id="store_flavorss">
-        <%= render 'updated_store_flavors' %>
-	    </div>
-	  <div id="flavors_list">
-	  	
-	  </div>
-      </div>
-    </div>
-    <div class="ui bottom attached button" id="editing_flavors">
-      <i class="add icon"></i>
 
-      	<%= link_to(edit_store_flavor_path(@store), remote: true) do %>
- 			 Edit Flavors
-		<% end %>
-
-    </div>
+<div class="ui grid">
+  <div class="ten wide column">
+  	<%= render 'manager_stats' %>
+  	<%= render 'store_flavor_stats' %>
   </div>
+  <div class="four wide column" id="incomplete_shifts_column">
+  	<%= render 'incomplete_shifts_stats' %>
   </div>
+  <div class="two wide column"></div>
+</div>

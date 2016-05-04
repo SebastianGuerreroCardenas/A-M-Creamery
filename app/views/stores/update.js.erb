@@ -1,2 +1,4 @@
 $('#flavors_list').empty();
-$('#store_flavorss').replaceWith('<%= j render("home/updated_store_flavors")%>');
+$('#store_flavorss').empty();
+$('#store_flavorss').append('<%= j render("home/updated_store_flavors")%>');
+$('#editing_flavorss').append('<%= j render("home/edit_flavor_button")%>');

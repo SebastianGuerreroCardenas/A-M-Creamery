@@ -4,6 +4,6 @@
 	<% elsif current_user.employee.role == "manager"%>
 		<%= render 'manager_dashboard' %>
 	<% elsif current_user.employee.role == "employee"%>
-
+		<%= render 'employee_dashboard' %>
 	<% end %>
 <% end %>

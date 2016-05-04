@@ -61,7 +61,8 @@ class Ability
       can :read, Store
       can :read, Job
       can :read, Flavor
-      
+      can :start_shift, Shift
+      can :end_shift, Shift
       # they can read their own profile
       can :show, User do |u|  
         u.id == user.id
@@ -86,6 +87,10 @@ class Ability
 
       # they can read their own assignments
       can :read, Shift do |s|  
+        s.employee.id == user.employee.id
+      end
+      # they can read their own assignments
+      can :update, Shift do |s|  
         s.employee.id == user.employee.id
       end
 
