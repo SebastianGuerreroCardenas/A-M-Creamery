@@ -8,6 +8,7 @@
 		<br/>
 		<%= @store.street %><br/>
 		<%= @store.city %>, <%= @store.state %> <%= @store.zip %><br/><br/>
+		<% if current_user.employee.role == "admin"%>
 		<b>Active: </b>
 		<% if @store.active? %>
 		Yes
@@ -16,6 +17,7 @@
 		<% end %>
 		<br/>
 		<br/>
+		<% end %>
 		<% if can? :update, Store %>
 		<%= link_to "<button class='ui basic green button'>
 		<i class='icon edit'></i>
