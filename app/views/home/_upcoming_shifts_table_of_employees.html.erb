@@ -1,5 +1,7 @@
 <%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
 <div class="ui pink segment" id="upcoming_shifts_table_start_end_id">
+<h2><%= @store.name %> Shifts</h2>
+<br>
 <% if not @upcoming_shifts.empty? %>
 	<table class="ui very basic collapsing celled table">
 		<thead>

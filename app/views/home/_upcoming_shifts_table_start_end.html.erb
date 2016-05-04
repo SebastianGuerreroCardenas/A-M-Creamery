@@ -1,5 +1,7 @@
 <%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
 <div class="ui pink segment" id="upcoming_shifts_table_start_end_id">
+<h2>Your Shifts</h2>
+<br>
 <% if not @upcoming_shifts_for_employee.empty? %>
 	<table class="ui very basic collapsing celled table">
 		<thead>
@@ -38,7 +40,7 @@
 				</div>
 			</td>
 			<td>
-				<%= link_to "Start Now" ,start_shift_path(shift), method: :post,remote: true, class: 'ui green button' %>
+				<%= link_to "Start Now" ,start_shift_path(shift), method: :post, remote: true, class: 'ui green button' %>
 			</td>
 			<td>
 				<%= link_to "End Now", end_shift_path(shift), method: :post, remote: true ,class: 'ui red button'%>

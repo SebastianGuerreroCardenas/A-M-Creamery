@@ -1,4 +1,5 @@
-
+<div class="ui pink segment">
+<h2>Incomplete Shifts</h2>
 <%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
 <% if not @incomplete_shifts.empty? %>
     <% for shift in @incomplete_shifts %>
@@ -6,7 +7,7 @@
 
 
 <div class="ui cards">
-  <div class="pink card">
+  <div class="pink card" id="cards_unique_id_<%= shift.id %>">
     <div class="content">
       <div class="header">Shift for <%= shift.employee.name %>
       </div>
@@ -17,9 +18,9 @@
       <p>Id: <%= shift.id  %></p>
       <p>P: <%= shift.persisted?  %></p>
      
-    <div id="jobs_list">
+    <div id="jobs_list_<%= shift.id %>" >
 
-        <%= form_for shift, remote: true do |f| %>
+       <!--  <%= form_for shift, remote: true do |f| %>
           <%= hidden_field_tag "shift[job_ids][]", nil%>
             <% if shift.errors.any? %>
                 <div id="error_explanation" class="ui red message">
@@ -49,12 +50,12 @@
                 <p><%= f.submit nil, class: 'ui basic blue button' %></p>
             </div>
             <% end %>
-          <br/>
+          <br/> -->
 
     </div>
       </div>
     </div>
-    <div class="ui bottom attached button" id="complete_shifts_button_id">
+    <div class="ui bottom attached button" id="complete_shifts_button_id_<%= shift.id %>">
       <%= link_to(edit_shift_path(shift), remote: true) do %>
        Complete Shift
     <% end %>
@@ -77,5 +78,5 @@
 <% else %>
 <p>There are no incomplete shifts.</p>
 <% end %>
-
+</div>
 

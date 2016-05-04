@@ -52,6 +52,7 @@ class ShiftsController < ApplicationController
     @shift = Shift.new(shift_params)
     respond_to do |format|
       if @shift.save
+
         format.js
          # redirect_to shifts_path, notice: "#{@shift.employee.proper_name} is working at #{@shift.store.name}."
         format.html { redirect_to shifts_path(@shift), notice: "#{@shift.employee.proper_name} is working at #{@shift.store.name}." }
@@ -78,6 +79,8 @@ class ShiftsController < ApplicationController
     @shift.end_now
     @shift.save
     respond_to do |format|
+      @upcoming_shifts_for_employee = Shift.upcoming.for_store_current(current_user.employee.current_assignment.store.id).for_employee(current_user.employee.id).by_store.by_employee.chronological.paginate(page: params[:upcoming_shifts_for_employee]).per_page(15)
+      
       format.js {}
     end
   end
@@ -86,6 +89,7 @@ class ShiftsController < ApplicationController
   def update
     respond_to do |format|
       if @shift.update(shift_params)
+        @incomplete_shifts = Shift.incomplete.upcoming.for_store_current(current_user.employee.current_assignment.store.id).by_store.by_employee.chronological.paginate(page: params[:incomplete_page]).per_page(15)
         format.js
         format.html { redirect_to shifts_path, notice: "#{@shift.employee.proper_name}'s shift to #{@shift.store.name} is updated." }
       else
