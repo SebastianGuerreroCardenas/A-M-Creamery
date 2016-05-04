@@ -1,4 +1,4 @@
-<%#checks if there are any elements in the employee, if so returns a table, else returns a statement %>
+c<%#checks if there are any elements in the employee, if so returns a table, else returns a statement %>
 <% if not @active_employees.empty? %>
 	<table class="ui very basic collapsing celled table">
 		<thead>
@@ -35,7 +35,7 @@
 							<%= link_to 'Edit', edit_employee_path(employee) %>
 						</td>
 						<td>
-							<%= link_to 'Destroy', employee, confirm: 'Are you sure?', method: :delete %>
+							<%= link_to 'Destroy', employee, method: :delete, data: {confirm: 'Are you sure?'} %>
 						</td>
 					<% end %>
 				</tr>

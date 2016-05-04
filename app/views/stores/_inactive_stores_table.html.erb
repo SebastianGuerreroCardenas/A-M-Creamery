@@ -19,7 +19,7 @@
 			<%= link_to 'Edit', edit_store_path(store) %>
 		</td>
 		<td>
-			<%= link_to 'Destroy', store, confirm: 'Are you sure?', method: :delete %>
+			<%= link_to 'Destroy', store, data: {confirm: 'Are you sure?'}, method: :delete %>
 		</td>
 		<% end %>
 	</tr>

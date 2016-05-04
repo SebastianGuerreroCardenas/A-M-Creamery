@@ -27,7 +27,7 @@
 				<%= link_to 'Edit', edit_employee_path(employee) %>
 			</td>
 			<td>
-				<%= link_to 'Destroy', employee, confirm: 'Are you sure?', method: :delete %>
+				<%= link_to 'Destroy', employee, data: {confirm: 'Are you sure?'}, method: :delete %>
 			</td>
 			<% end %>
 		</tr>
