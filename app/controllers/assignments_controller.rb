@@ -1,5 +1,4 @@
 class AssignmentsController < ApplicationController
-  # before_action :set_assignment, only: [:edit, :update, :destroy]
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
   before_action :check_login
   authorize_resource
@@ -26,20 +25,6 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
-    # if params[:from].nil?
-    #   if params[:id].nil?
-    #     @assignment = Assignment.new
-    #   else
-    #     @assignment = Assignment.find(params[:id])
-    #   end
-    # else
-    #   @assignment = Assignment.new
-    #   if params[:from] == "store" 
-    #     @assignment.store_id = params[:id]
-    #   else
-    #     @assignment.employee_id = params[:id]
-    #   end
-    # end
   end
 
   def edit

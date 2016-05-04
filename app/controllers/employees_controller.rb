@@ -17,9 +17,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    # get the assignment history for this employee
     @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
-    # get upcoming shifts for this employee (later)  
   end
 
   def new
@@ -32,7 +30,6 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-    
     if @employee.save
       redirect_to employee_path(@employee), notice: "Successfully created #{@employee.proper_name}."
     else
