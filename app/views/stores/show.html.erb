@@ -37,6 +37,7 @@
 	<div class="six wide column">
 		<h1>Current Employees</h1>
 		<br/>
+		<% if not @assignments.empty? %>
 		<table class="ui very basic collapsing celled table">
 			<thead>
 				<th>Name</th>
@@ -63,6 +64,9 @@
 		</tr>
 		</tfoot>
 	</table>
+	<% else %>
+	<p>There are no current employees.</p>
+<% end %>
 </div>
 <% end %>
 <div>
