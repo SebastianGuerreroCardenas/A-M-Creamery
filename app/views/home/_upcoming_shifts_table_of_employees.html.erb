@@ -1,22 +1,24 @@
 <%#checks if there are any elements in the assignments, if so returns a table, else returns a statement %>
 <div class="ui pink segment" id="upcoming_shifts_table_start_end_id">
-<% if not @upcoming_shifts_for_employee.empty? %>
+<% if not @upcoming_shifts.empty? %>
 	<table class="ui very basic collapsing celled table">
 		<thead>
 			<th></th>
+			<th>Employee</th>
 			<th>Date</th>
 			<th>Start Time</th>
 			<th>End Time</th>
 			<th>Notes</th>
 			<th>Jobs</th>
-			<th></th>
-			<th></th>
 		</thead>
 		<tbody>
-		<% for shift in @upcoming_shifts_for_employee %>
+		<% for shift in @upcoming_shifts %>
 		<tr>
 			<td>
 				<%= link_to "view", shift_path(shift) %>
+			</td>
+			<td>
+				<%= shift.employee.name %>
 			</td>
 			<td>
 				<%= shift.date.strftime("%m/%d/%y") %>
@@ -37,12 +39,6 @@
 				<% end%>
 				</div>
 			</td>
-			<td>
-				<%= link_to "Start Now" ,start_shift_path(shift), method: :post,remote: true, class: 'ui green button' %>
-			</td>
-			<td>
-				<%= link_to "End Now", end_shift_path(shift), method: :post, remote: true ,class: 'ui red button'%>
-			</td>
 		</tr>
 		<% end %>
 		</tbody>
@@ -50,14 +46,14 @@
 
 		<tr><th colspan="6">
 		<div class="ui right aligned">
-		<%= will_paginate @upcoming_shifts_for_employee, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'upcoming_shifts_for_employee', class: 'itemtags' %>
+		<%= will_paginate @upcoming_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next",param_name: 'upcoming_page', class: 'itemtags' %>
 		</div>
 		</th>
 		</tr>
 		</tfoot>
 	</table>
 <% else %>
-<p>There are no upcoming shifts..</p>
+<p>There are no upcoming shifts.</p>
 <% end %>
 
 </div>
